@@ -1385,6 +1385,7 @@
       .footer-buttons, html[dir="rtl"] .footer-buttons { align-items: flex-start; }
     }
 
+    /* תיקוני תצוגת מובייל לתמונה שהייתה ענקית וחתוכה */
     @media (max-width: 760px) {
       .container { width: min(100% - 28px, 1240px); }
       .header-inner { min-height: 70px; }
@@ -1412,6 +1413,14 @@
       .modal-scroll { padding: 12px; }
       .modal-box { border-radius: 28px; }
       .modal-grid { padding: 18px; }
+      
+      /* תיקוני גדלים ל-Modal במובייל */
+      .modal-main-image { min-height: 240px; padding: 15px; }
+      .modal-main-image img { max-height: 200px; }
+      .phone-mock { transform: scale(0.9); transform-origin: center center; }
+      .modal-thumb { height: 80px; padding: 6px; }
+      .modal-thumb img { max-height: 65px; }
+      .modal-top { align-items: flex-start; }
     }
   </style>
 </head>
@@ -1446,7 +1455,7 @@
         <div class="fade-in">
           <div class="badge">✨ <span data-i18n="heroBadge">פלאפונים מסוננים בהתאמה אישית לכל הגילאים</span></div>
           <h1 data-i18n="heroTitle">הסמארטפון החכם והבטוח שלך – עם סינון שנותן שקט נפשי.</h1>
-          <p class="hero-text" data-i18n="heroText">אצלנו, השקט שלכם קודם לכל. המכשירים שלנו מגיעים עם חסימה הרמטית כברירת מחדל, וכל אפליקציה נפתחת רק בהתאמה אישית מלאה ולפי הצרכים שלכם (כמו אפליקציות סוכרת, בריאות וכלים חיוניים). הכל כדי שתישארו מחוברים ובטוחים.</p>
+          <p class="hero-text" data-i18n="heroText">אצלנו, השקט שלכם קודם לכל. המכשירים שלנו מגיעים עם חסימה הרמטית כברירת מחדל, וכל אפליקציה נפתחת רק בהתאמה אישית מלאה ולפי הצרכים שלכם. הכל כדי שתישארו מחוברים ובטוחים.</p>
           <div class="hero-buttons">
             <a href="#products" class="primary-btn" data-i18n="heroCta">לצפייה במכשירים</a>
             <a href="#filter" class="secondary-btn" data-i18n="heroSecondary">איך הסינון עובד?</a>
@@ -1468,7 +1477,7 @@
               </div>
               <div class="summary-price" id="activePrice">₪849</div>
             </div>
-            <button class="dark-btn" id="activeAddBtn" type="button" style="width:100%; margin-top:18px;" data-i18n="addToCart">הוספה לבקשת הצעת מחיר</button>
+            <button class="dark-btn" id="activeAddBtn" type="button" style="width:100%; margin-top:18px;" data-i18n="addToCart">רכישה</button>
           </div>
         </div>
       </div>
@@ -1500,9 +1509,9 @@
         <div class="products-head">
           <div>
             <h2 class="section-title" data-i18n="productsTitle">בואו נבחר את המכשיר המושלם עבורכם</h2>
-            <p class="section-text" data-i18n="productsText">כל מכשיר מגיע אליכם עם גרסה מסוננת הרמטית, התאמה אישית ראשונית, תמיכה מלאה בעברית וכמובן - אחריות לשנה על המכשיר והגרסה. דברו איתנו כדי להתאים את החבילה המדויקת עבורכם.</p>
+            <p class="section-text" data-i18n="productsText">כל מכשיר מגיע אליכם עם גרסה מסוננת הרמטית, התאמה אישית ראשונית, תמיכה מלאה בעברית וכמובן - אחריות לשנה על המכשיר והגרסה.</p>
           </div>
-          <div class="price-note"><span data-i18n="vatIncluded">מחיר מותאם אישית</span> · <span data-i18n="delivery30">משלוחים לכל הארץ</span></div>
+          <div class="price-note"><span data-i18n="vatIncluded">התאמה אישית לכל לקוח</span> · <span data-i18n="delivery30">משלוחים לכל הארץ</span></div>
         </div>
 
         <div class="products-grid" id="productsGrid"></div>
@@ -1536,7 +1545,7 @@
                   <th data-i18n="tableModel">דגם</th>
                   <th data-i18n="tableSpecs">מפרט טכני</th>
                   <th data-i18n="tableBestFor">למי זה הכי מתאים?</th>
-                  <th data-i18n="tablePrice">השקעה</th>
+                  <th data-i18n="tablePrice">מחיר</th>
                 </tr>
               </thead>
               <tbody id="comparisonBody"></tbody>
@@ -1551,7 +1560,7 @@
         <div class="integration-card">
           <div class="icon">💬</div>
           <h3 data-i18n="paymentTitle">שירות בגובה העיניים</h3>
-          <p data-i18n="paymentText">אצלנו לא קונים חתול בשק ולא לוחצים על כפתור תשלום אוטומטי. אנחנו מאמינים בשיחה, ייעוץ והתאמה מדויקת לפני כל רכישה.</p>
+          <p data-i18n="paymentText">אצלנו לא קונים חתול בשק. אנחנו מאמינים בשיחה, ייעוץ והתאמה מדויקת לפני כל רכישה.</p>
         </div>
         <div class="integration-card">
           <div class="icon">🧾</div>
@@ -1583,7 +1592,7 @@
             </div>
             <div class="footer-buttons">
               <a href="https://wa.me/972556789344" class="green-btn">💬 <span data-i18n="whatsapp">התייעצות בוואטסאפ</span></a>
-              <button class="white-btn" id="footerCartBtn" type="button">📋 <span data-i18n="cart">צפייה בסל הבקשות שלי</span></button>
+              <button class="white-btn" id="footerCartBtn" type="button">🛒 <span data-i18n="cart">צפייה בסל הקניות שלי</span></button>
             </div>
           </div>
         </div>
@@ -1596,7 +1605,7 @@
   <div class="cart-overlay" id="cartOverlay">
     <aside class="cart-panel" role="dialog" aria-modal="true" aria-label="Shopping cart">
       <div class="cart-top">
-        <h2 data-i18n="cart">סל הבקשות שלי</h2>
+        <h2 data-i18n="cart">סל קניות</h2>
         <button class="icon-btn" id="closeCartBtn" type="button">×</button>
       </div>
       <div id="cartContent"></div>
@@ -1629,7 +1638,7 @@
               <h4 data-i18n="includedTitle">מה בחבילה שלנו?</h4>
               <ul id="includedList"></ul>
             </div>
-            <button class="dark-btn" id="modalAddBtn" type="button" style="width:100%; margin-top:22px;">הוספה לסל הבקשות</button>
+            <button class="dark-btn" id="modalAddBtn" type="button" style="width:100%; margin-top:22px;">רכישה</button>
           </div>
         </div>
       </div>
@@ -1665,7 +1674,7 @@
         trust2: 'אחריות שנה על המכשיר והגרסה',
         trust3: 'תמיכה מלאה בעברית',
         trust4: 'ליווי אישי לכל לקוח',
-        addToCart: 'הוספה לבקשת הצעת מחיר',
+        addToCart: 'רכישה',
         details: 'לכל הפרטים',
         filterTitle: 'אז מה פתוח ומה חסום?',
         filterSubtitle: 'הפילוסופיה שלנו פשוטה: פותחים רק מה שעושה לכם טוב. הגישה נבנית סביב בריאות, מעקב והפחתת הסחות דעת.',
@@ -1683,7 +1692,7 @@
         tableModel: 'דגם',
         tableSpecs: 'מפרט טכני',
         tableBestFor: 'למי זה הכי מתאים?',
-        tablePrice: 'השקעה',
+        tablePrice: 'מחיר',
         paymentTitle: 'שירות בגובה העיניים',
         paymentText: 'אצלנו לא קונים חתול בשק. אנחנו מאמינים בשיחה, ייעוץ והתאמה מדויקת לפני כל רכישה.',
         invoiceTitle: 'אחריות וליווי',
@@ -1694,12 +1703,12 @@
         footerCta: 'מתלבטים? אנחנו כאן כדי לעזור לכם לבחור נכון',
         medicalNotice: 'המידע באתר אינו ייעוץ רפואי. המכשירים אינם מכשיר רפואי ואינם תחליף לטיפול. שימוש באפליקציות כפוף להנחיות הרופא המטפל.',
         whatsapp: 'להתייעצות אישית בוואטסאפ',
-        cart: 'סל הבקשות שלי',
+        cart: 'סל קניות',
         emptyCart: 'הסל שלכם עדיין ריק :)',
         subtotal: 'סכום ביניים',
         shipping: 'דמי משלוח',
-        total: 'סה״כ משוער לתשלום',
-        checkout: 'המשך להתייעצות והזמנה בוואטסאפ',
+        total: 'סה״כ לתשלום',
+        checkout: 'מעבר לתשלום (יש חשבונית)',
         gallery: 'פרטים וגלריה',
         video: 'וידאו היכרות עם המוצר',
         videoHint: 'כאן ניתן להטמיע סרטון הדגמה לכל מכשיר.',
@@ -1740,7 +1749,7 @@
         navHow: 'How it works',
         navParents: 'Parents',
         navFaq: 'FAQ',
-        navCheckout: 'Consultation & Order',
+        navCheckout: 'Purchase & Order',
         heroBadge: 'Lovingly customized filtered phones',
         heroTitle: 'Your smart, safe phone — with a filter that brings peace of mind.',
         heroText: 'Your peace of mind is our priority. Our devices arrive fully blocked by default, and apps are only opened based on your specific needs. Stay connected, safe, and worry-free.',
@@ -1750,7 +1759,7 @@
         trust2: '1-year warranty on device & version',
         trust3: 'Full Hebrew & English support',
         trust4: 'Personal guidance for every customer',
-        addToCart: 'Add to quote request',
+        addToCart: 'Purchase',
         details: 'Full details',
         filterTitle: 'What is open and what is blocked?',
         filterSubtitle: 'Our philosophy is simple: we only open what does you good. The experience is designed around health, tracking, and reducing distractions.',
@@ -1768,7 +1777,7 @@
         tableModel: 'Model',
         tableSpecs: 'Technical Specs',
         tableBestFor: 'Best for',
-        tablePrice: 'Investment',
+        tablePrice: 'Price',
         paymentTitle: 'Service at eye level',
         paymentText: 'We believe in personal conversations, advice, and accurate matching before any purchase.',
         invoiceTitle: 'Warranty & Support',
@@ -1779,12 +1788,12 @@
         footerCta: 'Not sure? We are here to help you choose right',
         medicalNotice: 'The info on this site is not medical advice. The devices do not replace medical treatment. App usage is subject to medical guidance.',
         whatsapp: 'Consult with us on WhatsApp',
-        cart: 'My Request Cart',
+        cart: 'Shopping Cart',
         emptyCart: 'Your cart is still empty :)',
         subtotal: 'Subtotal',
         shipping: 'Delivery',
-        total: 'Estimated Total',
-        checkout: 'Proceed to WhatsApp Consultation',
+        total: 'Total to pay',
+        checkout: 'Proceed to Payment',
         gallery: 'Details & Gallery',
         video: 'Product Intro Video',
         videoHint: 'You can embed a demonstration video for each device here.',
@@ -2013,6 +2022,39 @@
       return { subtotal, shipping, total };
     }
 
+    // פונקציית התשלום שמתממשקת עם ה-API (יש חשבונית)
+    async function processCheckout() {
+      const btn = $('#checkoutBtn');
+      const originalText = btn.innerHTML;
+      btn.innerHTML = 'מכין נתונים למעבר תשלום... ⏳';
+      btn.style.opacity = '0.7';
+      btn.disabled = true;
+
+      const totals = calculateTotals();
+      
+      // אובייקט הנתונים שיישלח ב-API ליש חשבונית (או למערכת הסליקה שלך)
+      const payload = {
+        amount: totals.total,
+        description: "הזמנה מ-LoopFhone",
+        items: state.cart.map(item => ({
+          name: item.name,
+          quantity: item.qty,
+          price: item.price
+        })),
+        shipping_fee: totals.shipping
+      };
+
+      console.log("🚀 Payload ready for Yesh Heshbonit API:", payload);
+
+      // השהייה וירטואלית להדמיית קריאת שרת
+      setTimeout(() => {
+        alert("כאן הקוד מתממשק עם ה-API של חברת 'יש חשבונית'.\n(ניתן להעביר את הלקוח לדף התשלום המאובטח שלהם או להחזיר חלון iframe).\n\nהנתונים שמחכים לשליחה נמצאים בקונסול.");
+        btn.innerHTML = originalText;
+        btn.style.opacity = '1';
+        btn.disabled = false;
+      }, 1500);
+    }
+
     function renderCart() {
       const lang = i18n[state.lang];
       const content = $('#cartContent');
@@ -2025,11 +2067,6 @@
 
       const totals = calculateTotals();
       
-      const itemsListText = state.cart.map(item => `${item.qty}x ${item.name} (${formatILS(item.price)})`).join('%0A');
-      const whatsappText = state.lang === 'he' 
-        ? `שלום LoopFhone! 👋%0Aאשמח לקבל ייעוץ והצעת מחיר עבור המכשירים הבאים:%0A%0A${itemsListText}%0A%0Aסה״כ משוער (כולל משלוח): ${formatILS(totals.total)}` 
-        : `Hello LoopFhone! 👋%0AI would love to get a quote and consultation for:%0A%0A${itemsListText}%0A%0AEstimated Total (inc. shipping): ${formatILS(totals.total)}`;
-
       content.innerHTML = `
         <div class="cart-items" style="margin-bottom: 24px;">
           ${state.cart.map(item => `
@@ -2052,11 +2089,15 @@
           <div class="total-row"><span>${lang.shipping}</span><span>${formatILS(totals.shipping)}</span></div>
           <div class="total-row grand"><span>${lang.total}</span><span>${formatILS(totals.total)}</span></div>
         </div>
-        <a href="https://wa.me/972556789344?text=${whatsappText}" target="_blank" class="green-btn checkout-btn" style="text-decoration: none; display: flex;" id="checkoutBtn">💬 ${lang.checkout}</a>
+        <button class="green-btn checkout-btn" type="button" id="checkoutBtn" style="width: 100%; border: none;">💳 ${lang.checkout}</button>
       `;
 
       $$('[data-dec-id]').forEach(button => button.addEventListener('click', () => updateQty(button.dataset.decId, -1)));
       $$('[data-inc-id]').forEach(button => button.addEventListener('click', () => updateQty(button.dataset.incId, 1)));
+      
+      // חיבור כפתור הרכישה לפונקציית התשלום
+      $('#checkoutBtn').addEventListener('click', processCheckout);
+      
       renderCartCount();
     }
 
