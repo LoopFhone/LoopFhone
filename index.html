@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>LoopFhone | הסמארטפון הבטוח והמותאם אישית במיוחד עבורך</title>
+  <title>LoopFhone | הסמארטפון הבטוח והמסונן המותאם עבורך</title>
   
-  <meta name="description" content="הכירו את LoopFhone - פלאפונים חכמים ומסוננים בהתאמה אישית מלאה לכל גיל. תהנו משקט נפשי עם סינון חכם, אפליקציות בריאות וסוכרת מאושרות, תמיכה מלאה בעברית, ואחריות לשנה על המכשיר והגרסה." />
+  <meta name="description" content="הכירו את LoopFhone - פלאפונים חכמים ומסוננים בהתאמה אישית קפדנית לכל גיל. תהנו משקט נפשי עם סינון מאושר, אפליקציות בריאות וסוכרת, תמיכה בעברית, ואחריות לשנה." />
   <meta name="keywords" content="LoopFhone, לופפון, פלאפון מסונן, טלפון מסונן, מכשיר מסונן, פלאפון לסכרת, טלפון לחולי סכרת, אפליקציות סכרת, סינון חכם, Qin F25, Qin K25, Unihertz Jelly Star, Unihertz Jelly Max" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <meta name="author" content="LoopFhone" />
@@ -1182,17 +1182,23 @@
       padding: 26px;
     }
 
+    /* תיקון נראות גלריית התמונות */
     .modal-main-image {
-      min-height: 360px;
-      display: grid;
-      place-items: center;
+      width: 100%;
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       border-radius: 32px;
       background: linear-gradient(135deg, #bbf7d0, #67e8f9);
       padding: 26px;
+      box-sizing: border-box;
+      overflow: hidden;
     }
 
     .modal-main-image img {
-      max-height: 320px;
+      max-width: 100%;
+      max-height: 100%;
       object-fit: contain;
     }
 
@@ -1204,16 +1210,20 @@
     }
 
     .modal-thumb {
-      height: 114px;
-      display: grid;
-      place-items: center;
+      aspect-ratio: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       border-radius: 20px;
       background: #f8fafc;
       padding: 10px;
+      box-sizing: border-box;
+      overflow: hidden;
     }
 
     .modal-thumb img {
-      max-height: 94px;
+      max-width: 100%;
+      max-height: 100%;
       object-fit: contain;
     }
 
@@ -1385,7 +1395,6 @@
       .footer-buttons, html[dir="rtl"] .footer-buttons { align-items: flex-start; }
     }
 
-    /* תיקוני תצוגת מובייל לתמונה שהייתה ענקית וחתוכה */
     @media (max-width: 760px) {
       .container { width: min(100% - 28px, 1240px); }
       .header-inner { min-height: 70px; }
@@ -1414,12 +1423,10 @@
       .modal-box { border-radius: 28px; }
       .modal-grid { padding: 18px; }
       
-      /* תיקוני גדלים ל-Modal במובייל */
-      .modal-main-image { min-height: 240px; padding: 15px; }
-      .modal-main-image img { max-height: 200px; }
-      .phone-mock { transform: scale(0.9); transform-origin: center center; }
-      .modal-thumb { height: 80px; padding: 6px; }
-      .modal-thumb img { max-height: 65px; }
+      /* התאמות נוספות למובייל עבור גלריית תמונות */
+      .modal-main-image { padding: 15px; }
+      .modal-main-image .phone-mock { transform: scale(0.9); transform-origin: center center; }
+      .modal-thumb { padding: 6px; }
       .modal-top { align-items: flex-start; }
     }
   </style>
@@ -1453,17 +1460,17 @@
     <section class="hero">
       <div class="container hero-grid">
         <div class="fade-in">
-          <div class="badge">✨ <span data-i18n="heroBadge">פלאפונים מסוננים בהתאמה אישית לכל הגילאים</span></div>
-          <h1 data-i18n="heroTitle">הסמארטפון החכם והבטוח שלך – עם סינון שנותן שקט נפשי.</h1>
-          <p class="hero-text" data-i18n="heroText">אצלנו, השקט שלכם קודם לכל. המכשירים שלנו מגיעים עם חסימה הרמטית כברירת מחדל, וכל אפליקציה נפתחת רק בהתאמה אישית מלאה ולפי הצרכים שלכם. הכל כדי שתישארו מחוברים ובטוחים.</p>
+          <div class="badge">✨ <span data-i18n="heroBadge">פלאפונים מסוננים בהתאמה אישית קפדנית</span></div>
+          <h1 data-i18n="heroTitle">הסמארטפון החכם והבטוח שלך – עם סינון המעניק רוגע וביטחון.</h1>
+          <p class="hero-text" data-i18n="heroText">המכשירים שלנו מגיעים עם חסימה הרמטית כברירת מחדל. כל פתיחה מתבצעת בצורה מבוקרת, בהתאמה אישית מלאה ורק בהתאם לצרכים חיוניים. הכל כדי להבטיח שימוש בטוח ונקי.</p>
           <div class="hero-buttons">
             <a href="#products" class="primary-btn" data-i18n="heroCta">לצפייה במכשירים</a>
-            <a href="#filter" class="secondary-btn" data-i18n="heroSecondary">איך הסינון עובד?</a>
+            <a href="#filter" class="secondary-btn" data-i18n="heroSecondary">כיצד פועל הסינון?</a>
           </div>
           <div class="trust-grid">
             <div class="trust-card"><span>✓</span><span data-i18n="trust1">סינון חכם ובטוח</span></div>
-            <div class="trust-card"><span>✓</span><span data-i18n="trust2">אחריות שנה על המכשיר והגרסה</span></div>
-            <div class="trust-card"><span>✓</span><span data-i18n="trust3">תמיכה מקומית מחבקת</span></div>
+            <div class="trust-card"><span>✓</span><span data-i18n="trust2">אחריות לשנה מלאה</span></div>
+            <div class="trust-card"><span>✓</span><span data-i18n="trust3">תמיכה מקומית מקצועית</span></div>
             <div class="trust-card"><span>✓</span><span data-i18n="trust4">ליווי אישי לכל לקוח</span></div>
           </div>
         </div>
@@ -1473,7 +1480,7 @@
             <div class="summary-top">
               <div>
                 <h3 id="activeName">Qin K25</h3>
-                <p id="activeBestFor">לילדים, שימוש בסיסי ומכשיר קטן במיוחד</p>
+                <p id="activeBestFor">מכשיר קומפקטי ובסיסי במיוחד</p>
               </div>
               <div class="summary-price" id="activePrice">₪849</div>
             </div>
@@ -1488,7 +1495,7 @@
         <div class="dark-panel">
           <div class="big-icon">🔒</div>
           <h2 data-i18n="filterTitle">אז מה פתוח ומה חסום?</h2>
-          <p data-i18n="filterSubtitle">הפילוסופיה שלנו פשוטה: פותחים רק מה שעושה לכם טוב. הגישה נבנית סביב בריאות, מעקב והפחתת הסחות דעת — בלי לחשוף אתכם לכל רחבי האינטרנט.</p>
+          <p data-i18n="filterSubtitle">ההשקפה שלנו ברורה: אנחנו פותחים רק מה שגדולי ישראל אישרו. הגישה נבנית סביב שמירה על הערכים, בריאות, מעקב והפחתת הסחות דעת.</p>
         </div>
 
         <div class="filter-lists">
@@ -1508,10 +1515,10 @@
       <div class="container">
         <div class="products-head">
           <div>
-            <h2 class="section-title" data-i18n="productsTitle">בואו נבחר את המכשיר המושלם עבורכם</h2>
-            <p class="section-text" data-i18n="productsText">כל מכשיר מגיע אליכם עם גרסה מסוננת הרמטית, התאמה אישית ראשונית, תמיכה מלאה בעברית וכמובן - אחריות לשנה על המכשיר והגרסה.</p>
+            <h2 class="section-title" data-i18n="productsTitle">בחרו את המכשיר המתאים ביותר</h2>
+            <p class="section-text" data-i18n="productsText">כל מכשיר מגיע עם גרסה מסוננת הרמטית, התאמה אישית ראשונית, תמיכה מלאה בעברית ואחריות מקיפה לשנה על המכשיר והגרסה.</p>
           </div>
-          <div class="price-note"><span data-i18n="vatIncluded">התאמה אישית לכל לקוח</span> · <span data-i18n="delivery30">אפשרות לאיסוף או משלוח</span></div>
+          <div class="price-note"><span data-i18n="vatIncluded">התאמה מוקפדת לכל לקוח</span> · <span data-i18n="delivery30">איסוף עצמי או משלוח</span></div>
         </div>
 
         <div class="products-grid" id="productsGrid"></div>
@@ -1522,11 +1529,11 @@
       <div class="container parents-grid">
         <div class="feature-card">
           <div class="feature-icon">👨‍👩‍👧‍👦</div>
-          <h2 data-i18n="parentsTitle">מותאם לכל גיל — ונותן למשפחה ים של שקט</h2>
-          <p data-i18n="parentsText">המערכת שלנו עוטפת את המשתמשים מכל הגילאים, ומעניקה לבני המשפחה המלווים בדיוק את מה שהם צריכים: סמארטפון שמאפשר תקשורת חלקה, מעקב ושימוש באפליקציות בריאות חיוניות — בלי הסחות דעת, רשתות חברתיות או תוכן לא מותאם.</p>
+          <h2 data-i18n="parentsTitle">מותאם לכל גיל — ומעניק ביטחון ושקט נפשי למשפחה</h2>
+          <p data-i18n="parentsText">המערכת שלנו מספקת למשתמש ולמשפחתו סמארטפון המאפשר תקשורת חלקה ושימוש באפליקציות חיוניות (כגון צרכי בריאות ורפואה) — בצורה שקולה, מבוקרת וללא הסחות דעת או תוכן שאינו מותאם.</p>
           <div class="mini-grid">
-            <div class="mini-card">👶 <span data-i18n="childFriendly">מותאם לכל גיל</span></div>
-            <div class="mini-card">🩺 <span data-i18n="diabetesFocused">מעולה למעקב וסוכרת</span></div>
+            <div class="mini-card">👶 <span data-i18n="childFriendly">התאמה בטוחה לכל גיל</span></div>
+            <div class="mini-card">🩺 <span data-i18n="diabetesFocused">מענה מדויק לצרכי רפואה</span></div>
           </div>
         </div>
 
@@ -1544,7 +1551,7 @@
                 <tr>
                   <th data-i18n="tableModel">דגם</th>
                   <th data-i18n="tableSpecs">מפרט טכני</th>
-                  <th data-i18n="tableBestFor">למי זה הכי מתאים?</th>
+                  <th data-i18n="tableBestFor">התאמה מיטבית</th>
                   <th data-i18n="tablePrice">מחיר</th>
                 </tr>
               </thead>
@@ -1559,25 +1566,25 @@
       <div class="container integration-grid">
         <div class="integration-card">
           <div class="icon">💬</div>
-          <h3 data-i18n="paymentTitle">שירות בגובה העיניים</h3>
-          <p data-i18n="paymentText">אצלנו לא קונים חתול בשק. אנחנו מאמינים בשיחה, ייעוץ והתאמה מדויקת לפני כל רכישה.</p>
+          <h3 data-i18n="paymentTitle">שירות אמין ושקוף</h3>
+          <p data-i18n="paymentText">אנו דוגלים בשקיפות מלאה. אנו מאמינים בייעוץ, הכוונה והתאמה מדויקת בטרם כל רכישה כדי להבטיח התאמה מלאה לצרכיכם.</p>
         </div>
         <div class="integration-card">
           <div class="icon">🧾</div>
           <h3 data-i18n="invoiceTitle">אחריות וליווי</h3>
-          <p data-i18n="invoiceText">הקשר שלנו לא מסתיים ברכישה. תקבלו חשבונית מסודרת, שנת אחריות על המכשיר והגרסה, וכתובת שתמיד זמינה לעזור.</p>
+          <p data-i18n="invoiceText">הקשר בינינו נמשך גם לאחר הרכישה. כל לקוח זוכה לשנת אחריות מלאה, חשבונית מסודרת וכתובת מקצועית לכל שאלה.</p>
         </div>
         <div class="integration-card">
           <div class="icon">🚚</div>
-          <h3 data-i18n="shippingTitle">משלוחים לכל הארץ</h3>
-          <p data-i18n="shippingText">אנו דואגים לארוז את המכשיר שלכם ולשלוח אותו עד אליכם בבטחה בעלות של 30₪, או שתוכלו לאסוף בעצמכם בחינם.</p>
+          <h3 data-i18n="shippingTitle">מערך משלוחים</h3>
+          <p data-i18n="shippingText">אנו מקפידים לארוז את המכשיר בצורה מאובטחת. ניתן לבחור במשלוח לכל הארץ בעלות של 30₪ או באיסוף עצמי ללא עלות.</p>
         </div>
       </div>
     </section>
 
     <section class="section" id="faq">
       <div class="container">
-        <h2 class="section-title" data-i18n="faqTitle">שאלות שאנחנו נשאלים הרבה</h2>
+        <h2 class="section-title" data-i18n="faqTitle">שאלות נפוצות</h2>
         <div class="faq-grid" id="faqGrid"></div>
       </div>
     </section>
@@ -1587,12 +1594,12 @@
         <div class="footer-cta">
           <div class="footer-grid">
             <div>
-              <h2 data-i18n="footerCta">מתלבטים? אנחנו כאן כדי לעזור לכם לבחור נכון</h2>
-              <p data-i18n="medicalNotice">המידע באתר אינו ייעוץ רפואי. המכשירים אינם מכשיר רפואי ואינם תחליף לטיפול, אבחון או מעקב רפואי. שימוש באפליקציות סוכרת כפוף להנחיות הרופא, המשפחה ויצרני האפליקציות.</p>
+              <h2 data-i18n="footerCta">מתלבטים? נשמח לסייע בבחירת המכשיר הנכון.</h2>
+              <p data-i18n="medicalNotice">המידע באתר אינו מהווה ייעוץ רפואי. המכשירים אינם ציוד רפואי ואינם מהווים תחליף לטיפול מקצועי. שימוש ביישומונים רפואיים ייעשה אך ורק בכפוף להנחיות גורמי הרפואה.</p>
             </div>
             <div class="footer-buttons">
-              <a href="https://wa.me/972556789344" class="green-btn">💬 <span data-i18n="whatsapp">התייעצות בוואטסאפ</span></a>
-              <button class="white-btn" id="footerCartBtn" type="button">🛒 <span data-i18n="cart">צפייה בסל הקניות שלי</span></button>
+              <a href="https://wa.me/972556789344" class="green-btn">💬 <span data-i18n="whatsapp">התייעצות וליווי בוואטסאפ</span></a>
+              <button class="white-btn" id="footerCartBtn" type="button">🛒 <span data-i18n="cart">מעבר לסל הקניות</span></button>
             </div>
           </div>
         </div>
@@ -1635,7 +1642,7 @@
               <div class="video-placeholder" data-i18n="videoHint">כאן ניתן להטמיע סרטון הדגמה לכל מכשיר.</div>
             </div>
             <div class="included-box">
-              <h4 data-i18n="includedTitle">מה בחבילה שלנו?</h4>
+              <h4 data-i18n="includedTitle">מה כלול בחבילה?</h4>
               <ul id="includedList"></ul>
             </div>
             <button class="dark-btn" id="modalAddBtn" type="button" style="width:100%; margin-top:22px;">רכישה</button>
@@ -1662,89 +1669,89 @@
         dir: 'rtl',
         htmlLang: 'he',
         navDevices: 'מכשירים',
-        navHow: 'איך זה עובד',
+        navHow: 'הפעילות שלנו',
         navParents: 'להורים',
         navFaq: 'שאלות',
-        navCheckout: 'התייעצות והזמנה',
-        heroBadge: 'מכשירים מסוננים בהתאמה אישית',
-        heroTitle: 'הסמארטפון החכם והבטוח שלך – עם סינון שנותן שקט נפשי.',
-        heroText: 'אצלנו, השקט שלכם קודם לכל. המכשירים שלנו מגיעים עם חסימה הרמטית כברירת מחדל, וכל אפליקציה נפתחת רק בהתאמה אישית מלאה ולפי הצרכים שלכם. הכל כדי שתישארו מחוברים ובטוחים.',
+        navCheckout: 'הזמנה מאובטחת',
+        heroBadge: 'מכשירים מסוננים בהתאמה אישית קפדנית',
+        heroTitle: 'הסמארטפון החכם והבטוח שלך – עם סינון המעניק רוגע וביטחון.',
+        heroText: 'המכשירים שלנו מגיעים עם חסימה הרמטית כברירת מחדל. כל פתיחה מתבצעת בצורה מבוקרת, בהתאמה אישית מלאה ורק בהתאם לצרכים חיוניים. הכל כדי להבטיח שימוש בטוח ונקי.',
         heroCta: 'לצפייה במכשירים',
-        heroSecondary: 'איך הסינון עובד?',
+        heroSecondary: 'כיצד פועל הסינון?',
         trust1: 'סינון חכם ובטוח',
-        trust2: 'אחריות שנה על המכשיר והגרסה',
-        trust3: 'תמיכה מקומית מחבקת',
-        trust4: 'ליווי אישי חם לכל לקוח',
+        trust2: 'אחריות לשנה מלאה',
+        trust3: 'תמיכה מקומית מקצועית',
+        trust4: 'ליווי אישי לכל לקוח',
         addToCart: 'הוספה לסל 🛒',
         details: 'לכל הפרטים',
-        filterTitle: 'מה פתוח ומה חסום? ',
-        filterSubtitle: 'ההשקפה שלנו ברורה: פותחים רק מה שגדולי ישראל אישרו אנחנו פותחים.',
+        filterTitle: 'מה פתוח ומה חסום? בשקיפות מלאה',
+        filterSubtitle: 'ההשקפה שלנו ברורה: אנחנו פותחים רק מה שגדולי ישראל אישרו. הגישה נבנית סביב שמירה על הערכים, בריאות, מעקב והפחתת הסחות דעת.',
         openTitle: 'פתוח ובטוח לשימוש',
         blockedTitle: 'חסום כברירת מחדל',
-        productsTitle: 'בואו נבחר את המכשיר המושלם עבורכם',
-        productsText: 'כל מכשיר מגיע אליכם עם גרסה מסוננת הרמטית, התאמה אישית ראשונית, תמיכה מלאה בעברית וכמובן - אחריות לשנה על המכשיר והגרסה.',
-        vatIncluded: 'התאמה אישית לכל לקוח',
+        productsTitle: 'בחרו את המכשיר המתאים ביותר',
+        productsText: 'כל מכשיר מגיע אליכם עם גרסה מסוננת הרמטית, התאמה אישית מוקפדת, תמיכה מלאה בעברית ואחריות לשנה על המכשיר והגרסה.',
+        vatIncluded: 'התאמה מוקפדת לכל לקוח',
         delivery30: 'אפשרות לאיסוף או משלוח',
-        parentsTitle: 'מותאם לכל גיל — ונותן למשפחה ים של שקט',
-        parentsText: 'המערכת שלנו עוטפת את המשתמשים מכל הגילאים, ומעניקה לבני המשפחה המלווים סמארטפון שמאפשר תקשורת חלקה ושימוש באפליקציות בריאות חיוניות — בלי הסחות דעת.',
-        childFriendly: 'מותאם לכל גיל',
-        diabetesFocused: 'מעולה למעקב וסוכרת',
-        comparisonTitle: 'השוואת דגמים מהירה',
+        parentsTitle: 'מותאם לכל גיל — ומעניק ביטחון ושקט נפשי למשפחה',
+        parentsText: 'המערכת שלנו מספקת למשתמש ולמשפחתו סמארטפון המאפשר תקשורת חלקה ושימוש באפליקציות חיוניות (כגון צרכי רפואה) — בצורה מבוקרת וללא הסחות דעת.',
+        childFriendly: 'התאמה בטוחה לכל גיל',
+        diabetesFocused: 'מענה מדויק לצרכי רפואה',
+        comparisonTitle: 'השוואת דגמים',
         tableModel: 'דגם',
         tableSpecs: 'מפרט טכני',
-        tableBestFor: 'למי זה הכי מתאים?',
+        tableBestFor: 'התאמה מיטבית',
         tablePrice: 'מחיר',
-        paymentTitle: 'שירות בגובה העיניים',
-        paymentText: 'אצלנו לא קונים חתול בשק. אנחנו מאמינים בשיחה, ייעוץ והתאמה מדויקת לפני כל רכישה.',
+        paymentTitle: 'שירות אמין ושקוף',
+        paymentText: 'אנו דוגלים בשקיפות מלאה. אנו מאמינים בייעוץ, הכוונה והתאמה מדויקת בטרם כל רכישה.',
         invoiceTitle: 'אחריות וליווי',
-        invoiceText: 'הקשר שלנו לא מסתיים ברכישה. תקבלו חשבונית מסודרת, שנת אחריות על המכשיר והגרסה, וכתובת שתמיד זמינה לעזור.',
-        shippingTitle: 'משלוחים לכל הארץ',
-        shippingText: 'אנו דואגים לארוז את המכשיר שלכם ולשלוח אותו עד אליכם בבטחה, בתוספת 30₪ דמי משלוח (או איסוף בחינם).',
-        faqTitle: 'שאלות שאנחנו נשאלים הרבה',
-        footerCta: 'מתלבטים? אנחנו כאן כדי לעזור לכם לבחור נכון',
-        medicalNotice: 'המידע באתר אינו ייעוץ רפואי. המכשירים אינם מכשיר רפואי ואינם תחליף לטיפול. שימוש באפליקציות כפוף להנחיות הרופא המטפל.',
-        whatsapp: 'להתייעצות אישית בוואטסאפ',
-        cart: 'הסל שלי',
-        emptyCart: 'העגלה שלכם עדיין ריקה :)',
-        shippingQuestion: 'איך תרצו לקבל את המכשיר?',
-        deliveryOption: 'אשמח למשלוח עד הבית (30₪)',
-        pickupOption: 'אגיע לאסוף בעצמי (חינם)',
+        invoiceText: 'הקשר בינינו נמשך גם לאחר הרכישה. כל לקוח מקבל חשבונית מסודרת, שנת אחריות וכתובת מקצועית לכל שאלה.',
+        shippingTitle: 'מערך משלוחים',
+        shippingText: 'אנו מקפידים לארוז את המכשיר בצורה מאובטחת. ניתן לבחור במשלוח בעלות של 30₪ או באיסוף עצמי ללא עלות.',
+        faqTitle: 'שאלות נפוצות',
+        footerCta: 'זקוקים להכוונה? נשמח לסייע בבחירה הנכונה.',
+        medicalNotice: 'המידע באתר אינו מהווה ייעוץ רפואי. המכשירים אינם ציוד רפואי ואינם מהווים תחליף לטיפול מקצועי. שימוש ביישומונים כפוף להנחיות גורמי הרפואה.',
+        whatsapp: 'ייעוץ אישי בוואטסאפ',
+        cart: 'סל הקניות',
+        emptyCart: 'סל הקניות ריק.',
+        shippingQuestion: 'איך תעדיפו לקבל את המכשיר?',
+        deliveryOption: 'משלוח עד הבית (30₪)',
+        pickupOption: 'איסוף עצמי (ללא עלות)',
         subtotal: 'סכום ביניים',
         shipping: 'דמי משלוח',
         total: 'סה״כ לתשלום',
-        checkout: 'המשך לתשלום מאובטח',
+        checkout: 'מעבר לתשלום מאובטח',
         gallery: 'פרטים וגלריה',
         video: 'וידאו היכרות עם המוצר',
         videoHint: 'כאן ניתן להטמיע סרטון הדגמה לכל מכשיר.',
-        includedTitle: 'מה בחבילה שלנו?',
+        includedTitle: 'מה כלול בחבילה?',
         productsBestFor: {
-          'qin-k25': 'לילדים קטנים, או למי שמחפש מכשיר קומפקטי ובסיסי במיוחד',
-          'qin-f25': 'לאוהבי תחושת המקשים יחד עם הנוחות של אפליקציות חיוניות',
-          'jelly-star': 'למשפחות שרוצות סמארטפון זעיר אבל עוצמתי וחכם',
-          'jelly-max': 'למי שזקוק לביצועים חזקים באריזה קטנה ונוחה'
+          'qin-k25': 'מכשיר קומפקטי ובסיסי במיוחד, מתאים מאוד כטלפון ראשון',
+          'qin-f25': 'לאלו המעדיפים תחושת מקשים לצד נוחות של מסך מגע',
+          'jelly-star': 'למשתמשים הזקוקים למכשיר קטן ממדים בעל ביצועים חזקים',
+          'jelly-max': 'למשתמשים הדורשים חוויית ביצועים מהירה ומתקדמת באריזה קומפקטית'
         },
         productsTags: {
-          'qin-k25': 'הקומפקטי והאהוב',
-          'qin-f25': 'השילוב המנצח: מקשים וטאץ׳',
-          'jelly-star': 'קטן מבחוץ, ענק מבפנים',
-          'jelly-max': 'חווית פרימיום ועוצמה'
+          'qin-k25': 'קומפקטי ומשתלם',
+          'qin-f25': 'שילוב מקשים ומגע',
+          'jelly-star': 'זעיר ועוצמתי',
+          'jelly-max': 'ביצועי פרימיום'
         },
-        openList: ['אפליקציות בריאות וסוכרת מאושרות', 'כלים חכמים למעקב הורים', 'שיחות, הודעות ואנשי קשר', 'כלים חיוניים ושימושיים שאושרו', 'גמישות מלאה בהתאמה האישית עבורכם'],
-        blockedList: ['דפדפן אינטרנט רגיל ופתוח', 'רשתות חברתיות מסיחות דעת', 'התקנת אפליקציות ללא אישור', 'תוכן לא רלוונטי או פוגעני', 'שינויים בסינון ללא מעורבות מורשית'],
+        openList: ['אפליקציות בריאות וצרכי רפואה מאושרות', 'כלים מבוקרים לניהול ומעקב', 'שיחות, הודעות ואנשי קשר', 'כלים שימושיים נחוצים שאושרו מראש', 'התאמה אישית קפדנית לצרכי הלקוח'],
+        blockedList: ['דפדפן אינטרנט פתוח לחלוטין', 'רשתות חברתיות מכל סוג', 'התקנת יישומים ללא הרשאה מסודרת', 'כל תוכן שאינו תואם את ערכינו', 'אפשרות לשינוי הסינון על ידי המשתמש'],
         process: [
-          ['מתחילים בבחירת המכשיר', 'יחד איתנו, או בעצמכם, בוחרים את הדגם שהכי יתאים לגודל כף היד ולצרכים.'],
-          ['תופרים את הסינון למידותיכם', 'אנחנו מגדירים יחד בדיוק אילו אפליקציות יאושרו לפתיחה ואילו יישארו חסומות.'],
-          ['הכל קורה בצורה חלקה', 'ההתקנות והעדכונים מתבצעים מתוך המכשיר עצמו בצורה פשוטה, בהתאם לאישור שלנו.'],
-          ['אנחנו כאן איתכם', 'אתם מקבלים שנת אחריות מלאה גם על החומרה וגם על הסינון, עם תמיכה מקומית מחבקת.']
+          ['בחירת המכשיר', 'ניתן לבחור את הדגם המתאים ביותר מבחינת המפרט ומידות המכשיר.'],
+          ['הגדרת רמת הסינון', 'אנו מגדירים במדויק אילו יישומים יותרו לשימוש ואילו יישארו חסומים.'],
+          ['תהליך הטמעה יציב', 'התקנת היישומים והעדכונים מבוצעת באופן תקין ובטוח מהמערכת הפנימית, לאחר אישור.'],
+          ['אחריות ושירות', 'כל לקוח זוכה לשנת אחריות מלאה על החומרה והסינון, לצד תמיכה מקצועית ורציפה.']
         ],
         faqs: [
-          ['האם המכשיר מגיע אלינו חסום לגמרי?', 'בהחלט. המכשיר נמסר אליכם כשהוא חסום לחלוטין כברירת מחדל, ורק מה שאישרנו יחד נפתח לשימוש, למען השקט הנפשי שלכם.'],
-          ['איך מתקינים אפליקציות סוכרת כמו מד-סוכר וכדומה?', 'ההתקנה מתבצעת בקלות מתוך המכשיר עצמו, לאחר שאנחנו מאשרים ומכניסים אותה לרשימת הסינון המותרת.'],
-          ['האם זה מתאים גם לילדים צעירים?', 'כן, בפירוש. המערכת שלנו נבנתה במיוחד כדי לאפשר להורים לעקוב ולתקשר עם הילדים, מבלי לחשוף אותם לסכנות הרשת.'],
-          ['מה קורה אם הצרכים משתנים ונרצה לפתוח עוד משהו?', 'אין שום בעיה. אנחנו זמינים עבורכם. מגישים בקשה מסודרת ואנחנו מעדכנים את הגדרות הסינון מרחוק או באישורים פנימיים.'],
-          ['מה האחריות שלכם כוללת?', 'אנחנו מעניקים שנה של אחריות כפולה: גם על תקינות המכשיר הפיזי וגם על יציבות מערכת הסינון שלנו.']
+          ['האם המכשיר מגיע חסום לחלוטין?', 'כן. המכשיר נמסר כאשר הוא חסום הרמטית כברירת מחדל. אנו מאשרים ופותחים רק את מה שסוכם ואושר מראש.'],
+          ['כיצד ניתן להתקין יישומים רפואיים דוגמת מד סוכר?', 'ההתקנה מבוצעת באופן מוסדר מתוך המערכת הפנימית של המכשיר, מיד לאחר שהיישום אושר להוספה.'],
+          ['האם המערכת מותאמת גם לילדים?', 'בהחלט. המערכת מותאמת ומפוקחת במטרה להבטיח לילדים כלים ליצירת קשר מבלי לחשוף אותם לסכנות שברשת.'],
+          ['מה ניתן לעשות במידה ויהיה צורך באפליקציה נוספת בעתיד?', 'אנו תמיד זמינים עבורכם. מגישים בקשה מסודרת, ולאחר אישור מתאים אנו מעדכנים את הגדרות הסינון.'],
+          ['מה כוללת האחריות?', 'האחריות מכסה שנה שלמה, וכוללת כיסוי מלא הן עבור תקינות המכשיר הפיזי והן עבור יציבות גרסת הסינון.']
         ],
-        included: ['גרסה מסוננת, יציבה ובטוחה', 'ליווי אישי בהתאמת האפליקציות', 'אחריות שנה מלאה על המכשיר והגרסה', 'זמינות ותמיכה מקומית מחבקת']
+        included: ['גרסה מסוננת הרמטית ויציבה', 'ליווי אישי בהגדרת המכשיר', 'אחריות מלאה לשנה (מכשיר וסינון)', 'תמיכה טכנית מקצועית בעברית']
       },
       en: {
         dir: 'ltr',
@@ -1753,48 +1760,48 @@
         navHow: 'How it works',
         navParents: 'Parents',
         navFaq: 'FAQ',
-        navCheckout: 'Purchase & Order',
-        heroBadge: 'Lovingly customized filtered phones',
-        heroTitle: 'Your smart, safe phone — with a filter that brings peace of mind.',
-        heroText: 'Your peace of mind is our priority. Our devices arrive fully blocked by default, and apps are only opened based on your specific needs. Stay connected, safe, and worry-free.',
+        navCheckout: 'Secure Order',
+        heroBadge: 'Strictly customized filtered phones',
+        heroTitle: 'Your smart, safe phone — with a filter that ensures peace of mind.',
+        heroText: 'Our devices arrive fully blocked by default. All access is controlled and custom-tailored based solely on essential needs, ensuring a safe and clean experience.',
         heroCta: 'View our devices',
         heroSecondary: 'How does it work?',
-        trust1: 'Smart & safe filtering',
-        trust2: '1-year warranty on device & version',
-        trust3: 'Full Hebrew & English support',
+        trust1: 'Smart & strict filtering',
+        trust2: 'Full 1-year warranty',
+        trust3: 'Professional local support',
         trust4: 'Personal guidance for every customer',
         addToCart: 'Add to Cart 🛒',
         details: 'Full details',
         filterTitle: 'What is open and what is blocked?',
-        filterSubtitle: 'Our philosophy is simple: we only open what does you good. The experience is designed around health, tracking, and reducing distractions.',
+        filterSubtitle: 'Our approach is clear: we only open what has been approved by Rabbinic authorities. The experience is designed around core values, health, and reducing distractions.',
         openTitle: 'Open & safe to use',
         blockedTitle: 'Blocked by default',
-        productsTitle: 'Let\'s find the perfect device for you',
-        productsText: 'Every device comes with a tightly filtered version, initial personal setup, and a full 1-year warranty on the device and version.',
-        vatIncluded: 'Personalized for you',
+        productsTitle: 'Select the optimal device',
+        productsText: 'Every device comes with a strictly filtered version, initial professional setup, full Hebrew support, and a comprehensive 1-year warranty.',
+        vatIncluded: 'Meticulous customization',
         delivery30: 'Pickup or Delivery options',
-        parentsTitle: 'Adapted for all ages — bringing families peace of mind',
-        parentsText: 'Our system embraces users of all ages, giving parents and accompanying family members a smartphone that enables smooth communication and essential health apps — without distractions.',
-        childFriendly: 'Lovingly adapted for kids',
-        diabetesFocused: 'Perfect for health tracking',
-        comparisonTitle: 'Quick Comparison',
+        parentsTitle: 'Safely adapted for all ages — ensuring family peace of mind',
+        parentsText: 'Our system provides a smartphone that enables smooth communication and essential medical apps in a controlled manner, without distractions or unsuited content.',
+        childFriendly: 'Safe for all ages',
+        diabetesFocused: 'Precise medical utility',
+        comparisonTitle: 'Device Comparison',
         tableModel: 'Model',
         tableSpecs: 'Technical Specs',
-        tableBestFor: 'Best for',
+        tableBestFor: 'Best suited for',
         tablePrice: 'Price',
-        paymentTitle: 'Service at eye level',
-        paymentText: 'We believe in personal conversations, advice, and accurate matching before any purchase.',
+        paymentTitle: 'Transparent service',
+        paymentText: 'We advocate for full transparency, providing professional consultation and precise matching prior to any purchase.',
         invoiceTitle: 'Warranty & Support',
-        invoiceText: 'Our relationship doesn\'t end at checkout. You get a receipt, a 1-year warranty, and an address that is always available to help.',
-        shippingTitle: 'Nationwide Delivery',
-        shippingText: 'We pack your device with love and ship it safely to your door anywhere in the country for ₪30 (or free pickup).',
+        invoiceText: 'Our commitment continues after the purchase. You receive a proper receipt, a 1-year warranty, and dedicated professional support.',
+        shippingTitle: 'Delivery system',
+        shippingText: 'We carefully pack your device securely. You may choose nationwide delivery for ₪30 or free self-pickup.',
         faqTitle: 'Frequently Asked Questions',
-        footerCta: 'Not sure? We are here to help you choose right',
-        medicalNotice: 'The info on this site is not medical advice. The devices do not replace medical treatment. App usage is subject to medical guidance.',
-        whatsapp: 'Consult with us on WhatsApp',
-        cart: 'My Cart',
-        emptyCart: 'Your cart is still empty :)',
-        shippingQuestion: 'How would you like to receive it?',
+        footerCta: 'Require assistance? We are here to help you choose correctly.',
+        medicalNotice: 'The information on this site is not medical advice. The devices are not medical equipment. App usage is strictly subject to medical guidance.',
+        whatsapp: 'Consult via WhatsApp',
+        cart: 'Shopping Cart',
+        emptyCart: 'Your cart is currently empty.',
+        shippingQuestion: 'How would you prefer to receive your device?',
         deliveryOption: 'Home Delivery (₪30)',
         pickupOption: 'Self Pickup (Free)',
         subtotal: 'Subtotal',
@@ -1802,37 +1809,37 @@
         total: 'Total to pay',
         checkout: 'Proceed to Secure Payment',
         gallery: 'Details & Gallery',
-        video: 'Product Intro Video',
+        video: 'Product Video',
         videoHint: 'You can embed a demonstration video for each device here.',
-        includedTitle: 'What\'s in our package?',
+        includedTitle: 'What is included?',
         productsBestFor: {
-          'qin-k25': 'Young children, or those seeking a very basic & compact device',
-          'qin-f25': 'For those who love keypad feel with essential app convenience',
-          'jelly-star': 'Families wanting a tiny yet smart and powerful phone',
-          'jelly-max': 'For those needing strong performance in a comfortable small package'
+          'qin-k25': 'A highly basic compact device, excellent as a first phone',
+          'qin-f25': 'For those who prefer a keypad alongside touch screen convenience',
+          'jelly-star': 'Users requiring a small device with strong performance',
+          'jelly-max': 'Users demanding rapid performance in a compact build'
         },
         productsTags: {
-          'qin-k25': 'Compact & Loved',
-          'qin-f25': 'Keypad & Touch Combo',
-          'jelly-star': 'Tiny outside, Huge inside',
-          'jelly-max': 'Premium Experience'
+          'qin-k25': 'Compact Value',
+          'qin-f25': 'Keypad & Touch',
+          'jelly-star': 'Tiny & Powerful',
+          'jelly-max': 'Premium Performance'
         },
-        openList: ['Approved health & diabetes apps', 'Smart parental tracking tools', 'Calls, messages, and contacts', 'Approved essential utility tools', 'Full flexibility in personalization'],
-        blockedList: ['Regular open internet browser', 'Distracting social networks', 'Unapproved app installations', 'Irrelevant or harmful content', 'Filter changes without authorization'],
+        openList: ['Approved health and medical apps', 'Controlled tracking tools', 'Calls, messages, and contacts', 'Pre-approved essential utilities', 'Strict personal customization'],
+        blockedList: ['Fully open internet browser', 'Any form of social networks', 'Unauthorized application installation', 'Any content countering our values', 'User modification of filter settings'],
         process: [
-          ['Starting with device selection', 'Together, or by yourself, choose the model that best fits your hand size and needs.'],
-          ['Tailoring the filter to you', 'We define exactly which apps will be approved and which will remain blocked.'],
-          ['Everything happens smoothly', 'Installations and updates are done easily from within the device, subject to approval.'],
-          ['We are here with you', 'You receive a full one-year warranty on both the hardware and the filter, with embracing local support.']
+          ['Device Selection', 'Choose the model that best fits your technical and physical requirements.'],
+          ['Filter Configuration', 'We accurately define which applications will be permitted and which blocked.'],
+          ['Stable Implementation', 'Installations and updates are properly executed from our internal system upon approval.'],
+          ['Warranty & Service', 'Every client receives a full 1-year hardware and filter warranty, plus continuous support.']
         ],
         faqs: [
-          ['Does the device arrive completely blocked?', 'Absolutely. It is delivered fully blocked by default, and only what we agreed upon is opened.'],
-          ['How do we install apps like glucose monitors?', 'Installation is done easily from within the device, after we approve and add it to the allowed filter list.'],
-          ['Is this suitable for young kids?', 'Yes, explicitly. Our system was built to allow parents to communicate without exposing kids to online dangers.'],
-          ['What if our needs change and we want to open something else?', 'No problem. We are available for you. Submit a request and we will update the filter settings.'],
-          ['What does your warranty cover?', 'We provide a double 1-year warranty: for the physical device\'s integrity and the stability of our filtering system.']
+          ['Does the device arrive completely blocked?', 'Yes. The device is delivered hermetically blocked by default. We only open what is pre-approved.'],
+          ['How are medical apps (like glucose monitors) installed?', 'Installation is conducted securely from within the device’s internal system once the app is approved.'],
+          ['Is the system suitable for children?', 'Absolutely. The system is monitored to ensure communication tools are available without exposing children to online risks.'],
+          ['What if an additional app is needed later?', 'We remain at your service. Submit a formal request, and upon proper approval, we will update the filter.'],
+          ['What does the warranty cover?', 'The 1-year warranty covers both the physical integrity of the device and the stability of the filtered version.']
         ],
-        included: ['Stable, safe, filtered version', 'Personal guidance in app setup', 'Full 1-year warranty on device & version', 'Full support and availability']
+        included: ['Stable hermetically filtered version', 'Professional device setup', 'Full 1-year warranty (hardware & filter)', 'Professional technical support']
       }
     };
 
@@ -1912,8 +1919,8 @@
       document.documentElement.lang = lang.htmlLang;
       document.body.dataset.lang = state.lang;
       document.title = state.lang === 'he'
-        ? 'LoopFhone | פלאפונים מסוננים בהתאמה אישית לכל הגילאים'
-        : 'LoopFhone | Personalized filtered phones for all ages';
+        ? 'LoopFhone | הסמארטפון הבטוח והמסונן המותאם עבורך'
+        : 'LoopFhone | Your Custom Secure Smartphone';
 
       $$('[data-i18n]').forEach(node => {
         const key = node.dataset.i18n;
@@ -2033,7 +2040,7 @@
     async function processCheckout() {
       const btn = $('#checkoutBtn');
       const originalText = btn.innerHTML;
-      btn.innerHTML = state.lang === 'he' ? מכינים את ההזמנה שלך ... ⏳' : 'Preparing your order... ⏳';
+      btn.innerHTML = state.lang === 'he' ? 'מעבדים את נתוני ההזמנה... ⏳' : 'Processing order data... ⏳';
       btn.style.opacity = '0.7';
       btn.disabled = true;
 
@@ -2072,7 +2079,7 @@
       }
 
       const totals = calculateTotals();
-      const shippingText = totals.shipping > 0 ? formatILS(totals.shipping) : (state.lang === 'he' ? 'חינם' : 'Free');
+      const shippingText = totals.shipping > 0 ? formatILS(totals.shipping) : (state.lang === 'he' ? 'ללא עלות' : 'Free');
       
       content.innerHTML = `
         <div class="cart-items" style="margin-bottom: 20px;">
