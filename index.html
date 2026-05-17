@@ -1,0 +1,1138 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DiabeTech – פלאפונים לחולי סכרת</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700;900&family=Space+Grotesk:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #080c14;
+  --surface: #0e1420;
+  --surface2: #141b2b;
+  --border: rgba(0,210,255,0.12);
+  --accent: #00d2ff;
+  --accent2: #a855f7;
+  --accent3: #22d3ee;
+  --text: #e8f0fe;
+  --muted: #7a8faa;
+  --success: #10b981;
+  --card-bg: rgba(14,20,32,0.85);
+  --radius: 16px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'Heebo',sans-serif;
+  min-height:100vh;
+  overflow-x:hidden;
+}
+body.ltr{direction:ltr;font-family:'Space Grotesk',sans-serif;}
+
+/* ── NOISE OVERLAY ── */
+body::before{
+  content:'';
+  position:fixed;inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events:none;z-index:1000;opacity:.4;
+}
+
+/* ── AMBIENT GLOW ── */
+.glow-orb{
+  position:fixed;border-radius:50%;filter:blur(120px);pointer-events:none;
+}
+.glow-1{width:600px;height:600px;background:rgba(0,210,255,.07);top:-200px;right:-100px;}
+.glow-2{width:500px;height:500px;background:rgba(168,85,247,.06);bottom:-150px;left:-100px;}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;width:100%;z-index:200;
+  background:rgba(8,12,20,.85);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  padding:0 32px;height:68px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.nav-logo{
+  font-size:1.4rem;font-weight:900;letter-spacing:-0.5px;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.nav-logo span{font-size:.75rem;font-weight:400;color:var(--muted);display:block;margin-top:-4px;}
+.nav-right{display:flex;align-items:center;gap:12px;}
+
+/* Language Toggle */
+.lang-toggle{
+  display:flex;align-items:center;gap:6px;
+  background:var(--surface2);border:1px solid var(--border);
+  border-radius:40px;padding:4px;cursor:pointer;
+}
+.lang-btn{
+  display:flex;align-items:center;gap:5px;
+  padding:5px 10px;border-radius:30px;
+  font-size:.8rem;font-weight:600;
+  transition:all .25s;cursor:pointer;border:none;background:transparent;color:var(--muted);
+}
+.lang-btn.active{background:var(--accent);color:#000;}
+.lang-btn img{width:18px;height:13px;border-radius:2px;object-fit:cover;}
+
+/* Cart Button */
+.cart-btn{
+  position:relative;background:var(--surface2);border:1px solid var(--border);
+  border-radius:12px;padding:8px 14px;cursor:pointer;
+  display:flex;align-items:center;gap:8px;
+  font-size:.85rem;font-weight:600;color:var(--text);
+  transition:all .25s;
+}
+.cart-btn:hover{border-color:var(--accent);color:var(--accent);}
+.cart-count{
+  background:var(--accent);color:#000;
+  font-size:.7rem;font-weight:900;
+  width:18px;height:18px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  position:absolute;top:-6px;right:-6px;
+}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;padding:100px 24px 60px;
+  position:relative;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(0,210,255,.08);border:1px solid rgba(0,210,255,.25);
+  border-radius:40px;padding:6px 16px;margin-bottom:28px;
+  font-size:.8rem;letter-spacing:.5px;color:var(--accent);
+  animation:fadeDown .7s ease both;
+}
+.hero-badge::before{content:'●';color:var(--accent);animation:pulse 2s infinite;}
+.hero h1{
+  font-size:clamp(2.4rem,6vw,5rem);font-weight:900;
+  line-height:1.1;letter-spacing:-1px;
+  animation:fadeDown .7s .1s ease both;
+  max-width:800px;
+}
+.hero h1 .grad{
+  background:linear-gradient(135deg,var(--accent),var(--accent2),var(--accent3));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+.hero-sub{
+  font-size:1.1rem;color:var(--muted);max-width:560px;
+  line-height:1.7;margin:20px auto 40px;
+  animation:fadeDown .7s .2s ease both;
+}
+.hero-cta{
+  display:flex;gap:14px;justify-content:center;flex-wrap:wrap;
+  animation:fadeDown .7s .3s ease both;
+}
+.btn-primary{
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  color:#000;font-weight:800;font-size:1rem;
+  border:none;border-radius:14px;padding:14px 32px;cursor:pointer;
+  transition:transform .2s,box-shadow .2s;
+  box-shadow:0 0 30px rgba(0,210,255,.3);
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 45px rgba(0,210,255,.45);}
+.btn-secondary{
+  background:transparent;color:var(--text);font-weight:600;font-size:1rem;
+  border:1px solid var(--border);border-radius:14px;padding:14px 32px;cursor:pointer;
+  transition:all .2s;
+}
+.btn-secondary:hover{border-color:var(--accent);color:var(--accent);}
+
+/* Stats bar */
+.hero-stats{
+  display:flex;gap:48px;justify-content:center;flex-wrap:wrap;
+  margin-top:60px;padding-top:40px;
+  border-top:1px solid var(--border);
+  animation:fadeUp .7s .5s ease both;width:100%;max-width:700px;
+}
+.stat-item{text-align:center;}
+.stat-num{font-size:2rem;font-weight:900;color:var(--accent);}
+.stat-label{font-size:.8rem;color:var(--muted);margin-top:2px;}
+
+/* ── WHY US ── */
+.why-section{padding:80px 24px;max-width:1100px;margin:0 auto;}
+.section-tag{
+  font-size:.75rem;letter-spacing:2px;color:var(--accent);
+  text-transform:uppercase;font-weight:700;margin-bottom:12px;
+}
+.section-title{
+  font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:900;
+  line-height:1.2;margin-bottom:16px;
+}
+.section-sub{color:var(--muted);font-size:1rem;line-height:1.6;max-width:500px;}
+.why-grid{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:20px;margin-top:48px;
+}
+.why-card{
+  background:var(--card-bg);border:1px solid var(--border);
+  border-radius:var(--radius);padding:28px;
+  transition:transform .3s,border-color .3s,box-shadow .3s;
+  position:relative;overflow:hidden;
+}
+.why-card::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(0,210,255,.04),transparent);
+  opacity:0;transition:opacity .3s;
+}
+.why-card:hover{transform:translateY(-4px);border-color:rgba(0,210,255,.3);box-shadow:0 12px 40px rgba(0,210,255,.08);}
+.why-card:hover::before{opacity:1;}
+.why-icon{
+  width:48px;height:48px;border-radius:12px;
+  background:rgba(0,210,255,.1);border:1px solid rgba(0,210,255,.2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.4rem;margin-bottom:18px;
+}
+.why-card h3{font-size:1.05rem;font-weight:700;margin-bottom:10px;}
+.why-card p{font-size:.88rem;color:var(--muted);line-height:1.65;}
+
+/* ── PRODUCTS ── */
+.products-section{padding:80px 24px;max-width:1200px;margin:0 auto;}
+.products-header{margin-bottom:48px;}
+
+/* Filter bar */
+.filter-bar{
+  display:flex;gap:10px;flex-wrap:wrap;margin-top:24px;
+}
+.filter-chip{
+  background:var(--surface2);border:1px solid var(--border);
+  border-radius:30px;padding:7px 16px;font-size:.8rem;font-weight:600;
+  cursor:pointer;color:var(--muted);transition:all .2s;
+}
+.filter-chip.active,.filter-chip:hover{border-color:var(--accent);color:var(--accent);background:rgba(0,210,255,.08);}
+
+/* Product Grid */
+.products-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));
+  gap:24px;
+}
+.product-card{
+  background:var(--card-bg);border:1px solid var(--border);
+  border-radius:20px;overflow:hidden;
+  transition:transform .3s,box-shadow .3s,border-color .3s;
+  display:flex;flex-direction:column;
+}
+.product-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 20px 60px rgba(0,210,255,.1);
+  border-color:rgba(0,210,255,.25);
+}
+
+/* Image Gallery */
+.product-gallery{
+  position:relative;background:#0a0f1a;
+  aspect-ratio:4/3;overflow:hidden;
+}
+.gallery-imgs{display:flex;transition:transform .4s cubic-bezier(.4,0,.2,1);height:100%;}
+.gallery-img{
+  min-width:100%;height:100%;
+  display:flex;align-items:center;justify-content:center;
+  background:#0a0f1a;
+}
+.gallery-img img{max-height:100%;max-width:100%;object-fit:contain;padding:20px;}
+.gallery-video{
+  min-width:100%;height:100%;
+}
+.gallery-video iframe{width:100%;height:100%;border:none;}
+.gallery-nav{
+  position:absolute;bottom:10px;left:50%;transform:translateX(-50%);
+  display:flex;gap:6px;
+}
+.dot{
+  width:7px;height:7px;border-radius:50%;
+  background:rgba(255,255,255,.25);cursor:pointer;transition:all .2s;
+}
+.dot.active{background:var(--accent);width:18px;border-radius:4px;}
+.gallery-arrow{
+  position:absolute;top:50%;transform:translateY(-50%);
+  background:rgba(0,0,0,.6);border:1px solid var(--border);
+  border-radius:8px;width:32px;height:32px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--text);font-size:.9rem;transition:all .2s;opacity:0;
+}
+.product-card:hover .gallery-arrow{opacity:1;}
+.gallery-arrow:hover{background:var(--accent);color:#000;border-color:var(--accent);}
+.arrow-prev{right:10px;}
+.arrow-next{left:10px;}
+
+/* Badges */
+.badge-row{
+  position:absolute;top:12px;right:12px;
+  display:flex;flex-direction:column;gap:6px;align-items:flex-end;
+}
+.badge{
+  padding:4px 10px;border-radius:20px;font-size:.68rem;font-weight:700;
+  letter-spacing:.3px;
+}
+.badge-diabetes{background:rgba(0,210,255,.15);border:1px solid rgba(0,210,255,.35);color:var(--accent);}
+.badge-new{background:rgba(34,211,238,.15);border:1px solid rgba(34,211,238,.35);color:var(--accent3);}
+.badge-hot{background:rgba(168,85,247,.15);border:1px solid rgba(168,85,247,.35);color:var(--accent2);}
+
+/* Product Info */
+.product-info{padding:22px;flex:1;display:flex;flex-direction:column;}
+.product-brand{font-size:.75rem;color:var(--muted);font-weight:600;letter-spacing:.5px;text-transform:uppercase;margin-bottom:4px;}
+.product-name{font-size:1.15rem;font-weight:800;margin-bottom:10px;line-height:1.3;}
+.product-desc{font-size:.82rem;color:var(--muted);line-height:1.6;margin-bottom:14px;}
+
+/* Specs chips */
+.specs-row{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px;}
+.spec-chip{
+  background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);
+  border-radius:6px;padding:3px 8px;font-size:.7rem;color:var(--muted);
+}
+.spec-chip strong{color:var(--text);}
+
+/* Diabetes features */
+.diabetes-features{
+  background:rgba(0,210,255,.04);border:1px solid rgba(0,210,255,.1);
+  border-radius:10px;padding:12px;margin-bottom:16px;
+}
+.diabetes-features h4{font-size:.72rem;font-weight:700;color:var(--accent);margin-bottom:8px;letter-spacing:.5px;text-transform:uppercase;}
+.diabetes-features ul{list-style:none;display:flex;flex-direction:column;gap:4px;}
+.diabetes-features li{font-size:.75rem;color:var(--muted);display:flex;align-items:center;gap:6px;}
+.diabetes-features li::before{content:'✓';color:var(--accent);font-weight:900;font-size:.8rem;}
+
+/* Price & Add */
+.product-footer{display:flex;align-items:center;justify-content:space-between;margin-top:auto;gap:12px;}
+.price{font-size:1.5rem;font-weight:900;color:var(--accent);}
+.price-sub{font-size:.72rem;color:var(--muted);font-weight:400;}
+.add-btn{
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  color:#000;font-weight:800;font-size:.85rem;
+  border:none;border-radius:10px;padding:10px 18px;cursor:pointer;
+  transition:transform .2s,box-shadow .2s;white-space:nowrap;
+}
+.add-btn:hover{transform:scale(1.04);box-shadow:0 0 20px rgba(0,210,255,.3);}
+.add-btn.added{background:var(--success);animation:pop .3s ease;}
+
+/* ── CART DRAWER ── */
+.cart-overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,.6);
+  backdrop-filter:blur(4px);z-index:500;
+  opacity:0;pointer-events:none;transition:opacity .3s;
+}
+.cart-overlay.open{opacity:1;pointer-events:all;}
+.cart-drawer{
+  position:fixed;top:0;right:0;width:min(420px,100vw);height:100vh;
+  background:var(--surface);border-left:1px solid var(--border);
+  z-index:600;transform:translateX(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);
+  display:flex;flex-direction:column;
+}
+.cart-drawer.open{transform:translateX(0);}
+body.ltr .cart-drawer{right:auto;left:0;border-left:none;border-right:1px solid var(--border);transform:translateX(-100%);}
+body.ltr .cart-drawer.open{transform:translateX(0);}
+.cart-header{
+  padding:24px;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.cart-header h2{font-size:1.2rem;font-weight:800;}
+.close-btn{
+  background:var(--surface2);border:1px solid var(--border);
+  border-radius:8px;width:34px;height:34px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--muted);font-size:1.1rem;transition:all .2s;
+}
+.close-btn:hover{border-color:var(--accent);color:var(--accent);}
+.cart-items{flex:1;overflow-y:auto;padding:20px;}
+.cart-empty{
+  text-align:center;padding:60px 20px;color:var(--muted);
+}
+.cart-empty .empty-icon{font-size:3rem;margin-bottom:12px;opacity:.4;}
+.cart-item{
+  display:flex;gap:14px;padding:14px 0;
+  border-bottom:1px solid var(--border);align-items:center;
+}
+.cart-item-img{
+  width:60px;height:60px;border-radius:10px;
+  background:#0a0f1a;display:flex;align-items:center;justify-content:center;
+  overflow:hidden;flex-shrink:0;
+}
+.cart-item-img img{width:50px;height:50px;object-fit:contain;}
+.cart-item-info{flex:1;}
+.cart-item-name{font-size:.88rem;font-weight:700;margin-bottom:4px;}
+.cart-item-price{font-size:.82rem;color:var(--accent);font-weight:700;}
+.qty-controls{display:flex;align-items:center;gap:8px;margin-top:6px;}
+.qty-btn{
+  width:24px;height:24px;border-radius:6px;
+  background:var(--surface2);border:1px solid var(--border);
+  cursor:pointer;color:var(--text);font-size:.9rem;
+  display:flex;align-items:center;justify-content:center;transition:all .2s;
+}
+.qty-btn:hover{border-color:var(--accent);color:var(--accent);}
+.qty-num{font-size:.85rem;font-weight:700;min-width:20px;text-align:center;}
+.remove-item{
+  background:none;border:none;color:var(--muted);cursor:pointer;
+  font-size:.8rem;padding:4px;transition:color .2s;
+}
+.remove-item:hover{color:#ef4444;}
+
+.cart-footer{padding:20px;border-top:1px solid var(--border);}
+.cart-total{
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:1rem;font-weight:800;margin-bottom:16px;
+}
+.cart-total span:last-child{color:var(--accent);font-size:1.25rem;}
+.checkout-btn{
+  width:100%;background:linear-gradient(135deg,var(--accent),var(--accent2));
+  color:#000;font-weight:900;font-size:1rem;
+  border:none;border-radius:12px;padding:15px;cursor:pointer;
+  transition:transform .2s,box-shadow .2s;
+}
+.checkout-btn:hover{transform:translateY(-2px);box-shadow:0 0 30px rgba(0,210,255,.3);}
+.checkout-btn:disabled{opacity:.4;cursor:not-allowed;transform:none;}
+
+/* ── CHECKOUT MODAL ── */
+.modal-overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,.75);
+  backdrop-filter:blur(8px);z-index:800;
+  display:flex;align-items:center;justify-content:center;
+  padding:20px;opacity:0;pointer-events:none;transition:opacity .3s;
+}
+.modal-overlay.open{opacity:1;pointer-events:all;}
+.modal{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:24px;width:100%;max-width:500px;
+  padding:36px;position:relative;
+  transform:scale(.95) translateY(20px);
+  transition:transform .3s;max-height:90vh;overflow-y:auto;
+}
+.modal-overlay.open .modal{transform:scale(1) translateY(0);}
+.modal-title{font-size:1.4rem;font-weight:900;margin-bottom:6px;}
+.modal-sub{font-size:.85rem;color:var(--muted);margin-bottom:28px;}
+.modal-section{margin-bottom:24px;}
+.modal-section-title{
+  font-size:.72rem;font-weight:700;color:var(--accent);
+  letter-spacing:1px;text-transform:uppercase;margin-bottom:14px;
+  padding-bottom:8px;border-bottom:1px solid var(--border);
+}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.form-group{margin-bottom:14px;}
+.form-group label{display:block;font-size:.75rem;font-weight:600;color:var(--muted);margin-bottom:6px;}
+.form-group input{
+  width:100%;background:var(--surface2);border:1px solid var(--border);
+  border-radius:10px;padding:11px 14px;color:var(--text);font-size:.9rem;
+  font-family:inherit;transition:border-color .2s;outline:none;
+}
+.form-group input:focus{border-color:var(--accent);}
+.form-group input::placeholder{color:var(--muted);}
+.card-icons{display:flex;gap:8px;margin-bottom:14px;}
+.card-icon{
+  background:var(--surface2);border:1px solid var(--border);
+  border-radius:6px;padding:4px 8px;font-size:.75rem;color:var(--muted);
+}
+.installments-row{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:16px;}
+.install-btn{
+  background:var(--surface2);border:1px solid var(--border);
+  border-radius:8px;padding:6px 12px;font-size:.78rem;
+  cursor:pointer;color:var(--muted);transition:all .2s;
+}
+.install-btn.active{border-color:var(--accent);color:var(--accent);background:rgba(0,210,255,.08);}
+.order-summary{
+  background:var(--surface2);border:1px solid var(--border);
+  border-radius:12px;padding:16px;margin-bottom:20px;
+}
+.summary-line{display:flex;justify-content:space-between;font-size:.84rem;margin-bottom:8px;color:var(--muted);}
+.summary-line.total{color:var(--text);font-weight:800;font-size:1rem;border-top:1px solid var(--border);padding-top:10px;margin-top:4px;}
+.pay-btn{
+  width:100%;background:linear-gradient(135deg,var(--accent),var(--accent2));
+  color:#000;font-weight:900;font-size:1rem;
+  border:none;border-radius:14px;padding:16px;cursor:pointer;
+  transition:transform .2s,box-shadow .2s;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+}
+.pay-btn:hover{transform:translateY(-2px);box-shadow:0 0 35px rgba(0,210,255,.35);}
+.pay-btn:disabled{opacity:.5;cursor:not-allowed;transform:none;}
+.icount-badge{
+  text-align:center;font-size:.7rem;color:var(--muted);margin-top:12px;
+  display:flex;align-items:center;justify-content:center;gap:6px;
+}
+.icount-badge::before{content:'🔒';}
+
+/* Success screen */
+.success-screen{
+  text-align:center;padding:20px 0;display:none;
+}
+.success-icon{font-size:4rem;animation:bounce .5s ease;}
+.success-screen h3{font-size:1.4rem;font-weight:900;margin:16px 0 8px;}
+.success-screen p{color:var(--muted);font-size:.9rem;line-height:1.6;}
+
+/* ── FOOTER ── */
+footer{
+  border-top:1px solid var(--border);
+  padding:40px 24px;text-align:center;
+  color:var(--muted);font-size:.82rem;line-height:1.8;
+}
+footer .footer-logo{
+  font-size:1.2rem;font-weight:900;margin-bottom:8px;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+}
+
+/* ── ANIMATIONS ── */
+@keyframes fadeDown{from{opacity:0;transform:translateY(-16px);}to{opacity:1;transform:translateY(0);}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+@keyframes pop{0%{transform:scale(1);}50%{transform:scale(.92);}100%{transform:scale(1);}}
+@keyframes bounce{0%,100%{transform:scale(1);}50%{transform:scale(1.3);}}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.4;}}
+@keyframes spin{to{transform:rotate(360deg);}}
+
+/* Scroll reveal */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+/* Scrollbar */
+::-webkit-scrollbar{width:5px;}
+::-webkit-scrollbar-track{background:var(--surface);}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px;}
+
+/* Toast */
+.toast{
+  position:fixed;bottom:30px;right:30px;z-index:900;
+  background:var(--success);color:#fff;
+  padding:12px 20px;border-radius:12px;
+  font-size:.85rem;font-weight:700;
+  transform:translateX(200%);transition:transform .3s;
+  display:flex;align-items:center;gap:8px;
+}
+.toast.show{transform:translateX(0);}
+
+/* Loader */
+.loader{width:18px;height:18px;border:2px solid rgba(0,0,0,.3);border-top-color:#000;border-radius:50%;animation:spin .7s linear infinite;}
+
+@media(max-width:600px){
+  nav{padding:0 16px;}
+  .hero h1{font-size:2rem;}
+  .form-row{grid-template-columns:1fr;}
+  .modal{padding:24px 20px;}
+}
+</style>
+</head>
+<body>
+
+<div class="glow-orb glow-1"></div>
+<div class="glow-orb glow-2"></div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">✓ <span id="toast-msg">נוסף לסל!</span></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">
+    DiabeTech
+    <span data-he="פלאפונים לחולי סכרת" data-en="Phones for Diabetics">פלאפונים לחולי סכרת</span>
+  </div>
+  <div class="nav-right">
+    <div class="lang-toggle">
+      <button class="lang-btn active" id="btn-he" onclick="setLang('he')">
+        <img src="https://flagcdn.com/w40/il.png" alt="IL"> עברית
+      </button>
+      <button class="lang-btn" id="btn-en" onclick="setLang('en')">
+        <img src="https://flagcdn.com/w40/us.png" alt="US"> EN
+      </button>
+    </div>
+    <button class="cart-btn" onclick="openCart()">
+      <span>🛒</span>
+      <span data-he="סל קניות" data-en="Cart">סל קניות</span>
+      <div class="cart-count" id="cart-count">0</div>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-badge">
+    <span data-he="מסונן ומאושר לחולי סכרת" data-en="Curated & Approved for Diabetics">מסונן ומאושר לחולי סכרת</span>
+  </div>
+  <h1>
+    <span data-he="הטלפון הנכון" data-en="The Right Phone">הטלפון הנכון</span><br>
+    <span class="grad" data-he="לחיים בריאים יותר" data-en="For a Healthier Life">לחיים בריאים יותר</span>
+  </h1>
+  <p class="hero-sub" data-he="מכשירים שנבחרו במיוחד לצרכי חולי סכרת – תמיכה מלאה ב-CGM, אפליקציות ניטור גלוקוז, וסוללה אמינה שתחזיק אתכם לאורך כל היום" data-en="Devices specifically chosen for diabetics – full CGM support, glucose monitoring apps, and reliable battery that keeps you going all day">
+    מכשירים שנבחרו במיוחד לצרכי חולי סכרת – תמיכה מלאה ב-CGM, אפליקציות ניטור גלוקוז, וסוללה אמינה שתחזיק אתכם לאורך כל היום
+  </p>
+  <div class="hero-cta">
+    <button class="btn-primary" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">
+      <span data-he="🔍 גלה את המכשירים" data-en="🔍 Explore Devices">🔍 גלה את המכשירים</span>
+    </button>
+    <button class="btn-secondary">
+      <span data-he="למד עוד" data-en="Learn More">למד עוד</span>
+    </button>
+  </div>
+  <div class="hero-stats">
+    <div class="stat-item reveal">
+      <div class="stat-num">4</div>
+      <div class="stat-label" data-he="מכשירים מסוננים" data-en="Curated Devices">מכשירים מסוננים</div>
+    </div>
+    <div class="stat-item reveal">
+      <div class="stat-num">100%</div>
+      <div class="stat-label" data-he="תאימות CGM" data-en="CGM Compatible">תאימות CGM</div>
+    </div>
+    <div class="stat-item reveal">
+      <div class="stat-num">24/7</div>
+      <div class="stat-label" data-he="תמיכה טכנית" data-en="Tech Support">תמיכה טכנית</div>
+    </div>
+    <div class="stat-item reveal">
+      <div class="stat-num">⭐ 4.9</div>
+      <div class="stat-label" data-he="דירוג לקוחות" data-en="Customer Rating">דירוג לקוחות</div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why-section">
+  <div class="reveal">
+    <div class="section-tag" data-he="למה אנחנו?" data-en="WHY US?">למה אנחנו?</div>
+    <h2 class="section-title" data-he="חנות שמבינה את הצרכים שלך" data-en="A Store That Understands Your Needs">חנות שמבינה את הצרכים שלך</h2>
+    <p class="section-sub" data-he="כל מכשיר עובר סינון קפדני ונבחר בהתאם לדרישות הייחודיות של חיי יום-יום עם סכרת" data-en="Every device is carefully filtered and selected based on the unique requirements of daily diabetic life">כל מכשיר עובר סינון קפדני ונבחר בהתאם לדרישות הייחודיות של חיי יום-יום עם סכרת</p>
+  </div>
+  <div class="why-grid">
+    <div class="why-card reveal">
+      <div class="why-icon">📡</div>
+      <h3 data-he="תאימות מלאה ל-CGM" data-en="Full CGM Compatibility">תאימות מלאה ל-CGM</h3>
+      <p data-he="כל מכשיר נבדק לתאימות עם Dexcom, FreeStyle Libre ושאר חיישני הגלוקוז המובילים" data-en="Every device tested for compatibility with Dexcom, FreeStyle Libre and other leading glucose sensors">כל מכשיר נבדק לתאימות עם Dexcom, FreeStyle Libre ושאר חיישני הגלוקוז המובילים</p>
+    </div>
+    <div class="why-card reveal">
+      <div class="why-icon">🔋</div>
+      <h3 data-he="סוללה לכל היום" data-en="All-Day Battery">סוללה לכל היום</h3>
+      <p data-he="מכשירים עם סוללה אמינה שלא יכשלו אתכם ברגע הקריטי – ניטור רציף ללא הפסקות" data-en="Devices with reliable batteries that won't fail you at the critical moment – continuous monitoring without interruptions">מכשירים עם סוללה אמינה שלא יכשלו אתכם ברגע הקריטי – ניטור רציף ללא הפסקות</p>
+    </div>
+    <div class="why-card reveal">
+      <div class="why-icon">🛡️</div>
+      <h3 data-he="אחריות מורחבת" data-en="Extended Warranty">אחריות מורחבת</h3>
+      <p data-he="שנה אחריות מלאה עם תמיכה טכנית ייעודית לחולי סכרת בעברית 24/7" data-en="Full year warranty with dedicated tech support for diabetics in Hebrew 24/7">שנה אחריות מלאה עם תמיכה טכנית ייעודית לחולי סכרת בעברית 24/7</p>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products-section" id="products">
+  <div class="products-header reveal">
+    <div class="section-tag" data-he="המכשירים שלנו" data-en="OUR DEVICES">המכשירים שלנו</div>
+    <h2 class="section-title" data-he="מכשירים מסוננים לסכרת" data-en="Diabetes-Filtered Devices">מכשירים מסוננים לסכרת</h2>
+    <div class="filter-bar">
+      <div class="filter-chip active" onclick="filterProducts('all',this)" data-he="הכל" data-en="All">הכל</div>
+      <div class="filter-chip" onclick="filterProducts('compact',this)" data-he="מינימליסטי" data-en="Compact">מינימליסטי</div>
+      <div class="filter-chip" onclick="filterProducts('5g',this)" data-he="5G" data-en="5G">5G</div>
+      <div class="filter-chip" onclick="filterProducts('cgm',this)" data-he="תאים ל-CGM" data-en="CGM Ready">תאים ל-CGM</div>
+    </div>
+  </div>
+  <div class="products-grid" id="products-grid"></div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">DiabeTech</div>
+  <div data-he="© 2025 DiabeTech | פלאפונים לחולי סכרת | כל הזכויות שמורות" data-en="© 2025 DiabeTech | Phones for Diabetics | All Rights Reserved">© 2025 DiabeTech | פלאפונים לחולי סכרת | כל הזכויות שמורות</div>
+  <div style="margin-top:8px;font-size:.75rem;" data-he="תשלום מאובטח באמצעות iCount | SSL מוצפן" data-en="Secured payment via iCount | SSL Encrypted">תשלום מאובטח באמצעות iCount | SSL מוצפן</div>
+</footer>
+
+<!-- CART DRAWER -->
+<div class="cart-overlay" id="cart-overlay" onclick="closeCart()"></div>
+<div class="cart-drawer" id="cart-drawer">
+  <div class="cart-header">
+    <h2 data-he="🛒 סל הקניות שלך" data-en="🛒 Your Cart">🛒 סל הקניות שלך</h2>
+    <button class="close-btn" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cart-items-container"></div>
+  <div class="cart-footer">
+    <div class="cart-total">
+      <span data-he="סה״כ לתשלום:" data-en="Total:">סה״כ לתשלום:</span>
+      <span id="cart-total-price">₪0</span>
+    </div>
+    <button class="checkout-btn" id="checkout-btn" onclick="openCheckout()" disabled>
+      <span data-he="לתשלום עם iCount →" data-en="Checkout with iCount →">לתשלום עם iCount →</span>
+    </button>
+  </div>
+</div>
+
+<!-- CHECKOUT MODAL -->
+<div class="modal-overlay" id="checkout-modal">
+  <div class="modal">
+    <div id="checkout-form-screen">
+      <h2 class="modal-title" data-he="💳 השלמת רכישה" data-en="💳 Complete Purchase">💳 השלמת רכישה</h2>
+      <p class="modal-sub" data-he="תשלום מאובטח דרך iCount" data-en="Secured payment via iCount">תשלום מאובטח דרך iCount</p>
+
+      <div class="modal-section">
+        <div class="modal-section-title" data-he="פרטים אישיים" data-en="Personal Details">פרטים אישיים</div>
+        <div class="form-row">
+          <div class="form-group">
+            <label data-he="שם פרטי" data-en="First Name">שם פרטי</label>
+            <input type="text" id="f-firstname" placeholder="ישראל">
+          </div>
+          <div class="form-group">
+            <label data-he="שם משפחה" data-en="Last Name">שם משפחה</label>
+            <input type="text" id="f-lastname" placeholder="ישראלי">
+          </div>
+        </div>
+        <div class="form-group">
+          <label data-he="דוא״ל" data-en="Email">דוא״ל</label>
+          <input type="email" id="f-email" placeholder="israel@example.com">
+        </div>
+        <div class="form-group">
+          <label data-he="טלפון" data-en="Phone">טלפון</label>
+          <input type="tel" id="f-phone" placeholder="050-000-0000">
+        </div>
+      </div>
+
+      <div class="modal-section">
+        <div class="modal-section-title" data-he="פרטי כרטיס אשראי" data-en="Credit Card Details">פרטי כרטיס אשראי</div>
+        <div class="card-icons">
+          <span class="card-icon">VISA</span>
+          <span class="card-icon">MC</span>
+          <span class="card-icon">AMEX</span>
+          <span class="card-icon">Isracard</span>
+        </div>
+        <div class="form-group">
+          <label data-he="מספר כרטיס" data-en="Card Number">מספר כרטיס</label>
+          <input type="text" id="f-card" placeholder="0000 0000 0000 0000" maxlength="19" oninput="formatCard(this)">
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label data-he="תוקף" data-en="Expiry">תוקף</label>
+            <input type="text" id="f-exp" placeholder="MM/YY" maxlength="5" oninput="formatExp(this)">
+          </div>
+          <div class="form-group">
+            <label>CVV</label>
+            <input type="text" id="f-cvv" placeholder="123" maxlength="4">
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-section">
+        <div class="modal-section-title" data-he="מספר תשלומים" data-en="Installments">מספר תשלומים</div>
+        <div class="installments-row" id="installments">
+          <button class="install-btn active" onclick="selectInstall(this,1)">1</button>
+          <button class="install-btn" onclick="selectInstall(this,2)">2</button>
+          <button class="install-btn" onclick="selectInstall(this,3)">3</button>
+          <button class="install-btn" onclick="selectInstall(this,6)">6</button>
+          <button class="install-btn" onclick="selectInstall(this,12)">12</button>
+        </div>
+      </div>
+
+      <div class="order-summary" id="order-summary"></div>
+
+      <button class="pay-btn" id="pay-btn" onclick="processPayment()">
+        <span id="pay-btn-text" data-he="🔒 שלם עכשיו" data-en="🔒 Pay Now">🔒 שלם עכשיו</span>
+      </button>
+      <div class="icount-badge" data-he="מאובטח על ידי iCount | PCI DSS" data-en="Secured by iCount | PCI DSS">מאובטח על ידי iCount | PCI DSS</div>
+      <button onclick="closeCheckout()" style="width:100%;margin-top:10px;background:none;border:none;color:var(--muted);cursor:pointer;font-size:.82rem;" data-he="← חזרה לסל" data-en="← Back to Cart">← חזרה לסל</button>
+    </div>
+
+    <div class="success-screen" id="success-screen">
+      <div class="success-icon">✅</div>
+      <h3 data-he="הרכישה בוצעה בהצלחה!" data-en="Purchase Successful!">הרכישה בוצעה בהצלחה!</h3>
+      <p data-he="תודה על הרכישה! קבלה נשלחה לדוא״ל שלך.<br>ה-iCount יצור חשבונית אוטומטית." data-en="Thank you for your purchase! A receipt was sent to your email.<br>iCount will generate an invoice automatically.">
+        תודה על הרכישה! קבלה נשלחה לדוא״ל שלך.<br>ה-iCount יצור חשבונית אוטומטית.
+      </p>
+      <button class="btn-primary" style="margin-top:24px" onclick="closeCheckout();resetCart()">
+        <span data-he="המשך קניות" data-en="Continue Shopping">המשך קניות</span>
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── DATA ──────────────────────────────────────────────────────────────────────
+const PRODUCTS = [
+  {
+    id:1, brand:"Unihertz", name:"Jelly Star",
+    nameEn:"Jelly Star",
+    tags:['compact','cgm'],
+    price:799,
+    desc:"הסמארטפון הקטן בעולם עם מסך 3 אינץ', גוף שקוף ואורות LED דינמיים. מושלם לשמירה בכיס תמיד.",
+    descEn:"The world's smallest smartphone with a 3-inch screen, transparent body and dynamic LED lights. Perfect for always keeping in your pocket.",
+    specs:["Android 13","3\" IPS","8GB/256GB","2000mAh","4G","48MP","NFC"],
+    diabetesFeatures:{
+      he:["תאים לאפליקציית Dexcom","NFC לשליפת נתונים","לחצן מותאם אישית לאלרט גלוקוז","גוף קטן – לא מסיח דעת"],
+      en:["Compatible with Dexcom app","NFC for data retrieval","Custom button for glucose alerts","Tiny body – non-distracting"]
+    },
+    badge:"compact",
+    images:[
+      "https://cdn.unihertz.com/cdn/shop/files/Jelly-Star-official-2_20231027175543.jpg",
+      "https://cdn.unihertz.com/cdn/shop/files/JellyStar_transparent_back.jpg",
+      "https://m.media-amazon.com/images/I/51VfvRs-NkL._AC_SX679_.jpg"
+    ],
+    youtubeId:"r9FX-B7WdCU",
+    youtubeIdEn:"r9FX-B7WdCU",
+    color:"#00d2ff"
+  },
+  {
+    id:2, brand:"Unihertz", name:"Jelly Max",
+    nameEn:"Jelly Max",
+    tags:['5g','cgm'],
+    price:1290,
+    desc:"הסמארטפון הקטן ביותר עם 5G! מסך 5 אינץ', מצלמה 100MP, גיבוי יום שלם. הכוח של מכשיר גדול בגוף קומפקטי.",
+    descEn:"The smallest 5G smartphone! 5-inch screen, 100MP camera, full day battery. Big phone power in a compact body.",
+    specs:["Android 15","5\" IPS","12GB/256GB","4000mAh","5G","100MP","66W Fast Charge"],
+    diabetesFeatures:{
+      he:["5G לסנכרון מהיר עם CGM","100MP לסריקת קוד QR של ציוד רפואי","טעינה מהירה 66W","סוללה 4000mAh – ניטור שלם כל היום"],
+      en:["5G for fast CGM sync","100MP camera for medical equipment QR scanning","66W fast charging","4000mAh battery – full day monitoring"]
+    },
+    badge:"5g",
+    images:[
+      "https://cdn.unihertz.com/cdn/shop/files/JellyMax_black_front.jpg",
+      "https://cdn.unihertz.com/cdn/shop/files/JellyMax_transparent_back.jpg",
+      "https://m.media-amazon.com/images/I/41nAA8vTuLL._AC_SX679_.jpg"
+    ],
+    youtubeId:"ORhF2Vqmvnc",
+    color:"#a855f7"
+  },
+  {
+    id:3, brand:"Duoqin / Xiaomi", name:"Qin F25",
+    nameEn:"Qin F25",
+    tags:['compact','cgm'],
+    price:649,
+    desc:"פלאפון קומפקטי אנדרואיד 14 עם בינה מלאכותית DeepSeek מובנית. עיצוב קלאסי בר-מכשיר עם מסך 3.54 אינץ'.",
+    descEn:"Compact Android 14 phone with built-in DeepSeek AI. Classic bar design with a 3.54-inch screen.",
+    specs:["Android 14","3.54\" IPS","6GB/128GB","2700mAh","4G","8MP","AI Voice"],
+    diabetesFeatures:{
+      he:["AI קולי לניהול תרופות","גוף קטן ונוח לנשיאה","שני SIM לניתוב חיוב רפואי","שלטוניית IR לציוד רפואי"],
+      en:["AI voice for medication management","Small and easy to carry","Dual SIM for medical billing routing","IR remote for medical equipment"]
+    },
+    badge:"new",
+    images:[
+      "https://m.media-amazon.com/images/I/514vFJPb5kL._AC_SX679_.jpg",
+      "https://ae-pic-a1.aliexpress-media.com/kf/Scf55678c968e4213b34121813ea8b0f5E.png",
+      "https://m.media-amazon.com/images/I/41YQpUFAnFL._AC_SX679_.jpg"
+    ],
+    youtubeId:"z5h00aGIFco",
+    color:"#22d3ee"
+  },
+  {
+    id:4, brand:"Duoqin / Xiaomi", name:"Qin K25",
+    nameEn:"Qin K25",
+    tags:['compact','cgm'],
+    price:459,
+    desc:"הפלאפון הקטן, הקל והחמוד ביותר! 94 גרם בלבד, מסך 3.54 אינץ'. מושלם כמכשיר שני ייעודי לניטור סכרת.",
+    descEn:"The smallest, lightest and most adorable phone! Only 94g, 3.54-inch screen. Perfect as a dedicated secondary device for diabetes monitoring.",
+    specs:["Android 14","3.54\" IPS","4GB/128GB","2140mAh","4G","8MP","94g"],
+    diabetesFeatures:{
+      he:["94 גרם בלבד – לא תרגיש אותו","מכשיר שני ייעודי לאפליקציות סכרת","סוללה חסכונית עם מעבד יעיל","גדלים קטנים מצמצמים הסחות דעת"],
+      en:["Only 94g – you won't feel it","Dedicated second device for diabetes apps","Efficient battery with low-power processor","Small size minimizes distractions"]
+    },
+    badge:"hot",
+    images:[
+      "https://m.media-amazon.com/images/I/41-gJXVTNlL._AC_SX679_.jpg",
+      "https://ae-pic-a1.aliexpress-media.com/kf/S4f7ec9e3f1094d38b6b9c5e2b0e0f1b1r.jpg",
+      "https://m.media-amazon.com/images/I/31hFzPRFfBL._AC_SX679_.jpg"
+    ],
+    youtubeId:"K9oGIVJ_oRU",
+    color:"#f59e0b"
+  }
+];
+
+// ── STATE ──────────────────────────────────────────────────────────────────────
+let cart = [];
+let lang = 'he';
+let installments = 1;
+let currentFilter = 'all';
+
+// ── LANG ──────────────────────────────────────────────────────────────────────
+function setLang(l){
+  lang = l;
+  document.documentElement.lang = l;
+  document.body.dir = l==='he'?'rtl':'ltr';
+  l==='ltr'?document.body.classList.add('ltr'):document.body.classList.remove('ltr');
+  document.getElementById('btn-he').classList.toggle('active',l==='he');
+  document.getElementById('btn-en').classList.toggle('active',l==='en');
+  document.querySelectorAll('[data-he]').forEach(el=>{
+    el.textContent = el.getAttribute('data-'+l) || el.getAttribute('data-he');
+  });
+  renderProducts();
+  renderCart();
+  updateOrderSummary();
+}
+
+// ── PRODUCTS ──────────────────────────────────────────────────────────────────
+const galleryIndex = {};
+
+function renderProducts(){
+  const grid = document.getElementById('products-grid');
+  const filtered = currentFilter==='all'?PRODUCTS:PRODUCTS.filter(p=>p.tags.includes(currentFilter));
+  grid.innerHTML = filtered.map(p=>productHTML(p)).join('');
+}
+
+function filterProducts(tag, el){
+  currentFilter = tag;
+  document.querySelectorAll('.filter-chip').forEach(c=>c.classList.remove('active'));
+  el.classList.add('active');
+  renderProducts();
+  // update filter chip labels too
+  document.querySelectorAll('.filter-chip').forEach(el=>{
+    if(el.getAttribute('data-'+lang)) el.textContent = el.getAttribute('data-'+lang);
+  });
+}
+
+function productHTML(p){
+  const mediaItems = [...p.images.slice(0,2), 'video', p.images[2]].filter(Boolean);
+  const name = lang==='en' ? p.nameEn : p.name;
+  const desc = lang==='en' ? p.descEn : p.desc;
+  const features = p.diabetesFeatures[lang] || p.diabetesFeatures.he;
+  const badgeLabel = {compact:{he:'קומפקטי',en:'Compact'},new:{he:'חדש',en:'New'},hot:{he:'מבוקש',en:'Hot'},'5g':{he:'5G',en:'5G'}}[p.badge]||{he:p.badge,en:p.badge};
+  const addLabel = lang==='he'?'הוסף לסל':'Add to Cart';
+  const priceLabel = lang==='he'?'₪'+p.price.toLocaleString():'₪'+p.price.toLocaleString();
+
+  galleryIndex[p.id] = galleryIndex[p.id] || 0;
+
+  const dotsHtml = mediaItems.map((_,i)=>`<div class="dot${i===0?' active':''}" onclick="goSlide(${p.id},${i})"></div>`).join('');
+  const imgsHtml = mediaItems.map((m,i)=>{
+    if(m==='video'){
+      return `<div class="gallery-video">
+        <iframe src="https://www.youtube.com/embed/${p.youtubeId}?rel=0&modestbranding=1" allowfullscreen loading="lazy" title="${name} video"></iframe>
+      </div>`;
+    }
+    return `<div class="gallery-img"><img src="${m}" alt="${name}" onerror="this.src='https://placehold.co/400x300/0a0f1a/00d2ff?text=${encodeURIComponent(name)}'"></div>`;
+  }).join('');
+
+  const specsHtml = p.specs.map(s=>`<div class="spec-chip">${s}</div>`).join('');
+  const featHtml = features.map(f=>`<li>${f}</li>`).join('');
+
+  return `
+  <div class="product-card reveal" data-id="${p.id}">
+    <div class="product-gallery" id="gallery-${p.id}">
+      <div class="gallery-imgs" id="imgs-${p.id}" style="width:${mediaItems.length*100}%">
+        ${imgsHtml}
+      </div>
+      <div class="badge-row">
+        <div class="badge badge-diabetes">🩸 Diabetes Friendly</div>
+        <div class="badge badge-${p.badge}">${badgeLabel[lang]}</div>
+      </div>
+      <button class="gallery-arrow arrow-prev" onclick="goSlide(${p.id}, galleryIndex[${p.id}]+1)">‹</button>
+      <button class="gallery-arrow arrow-next" onclick="goSlide(${p.id}, galleryIndex[${p.id}]-1)">›</button>
+      <div class="gallery-nav">${dotsHtml}</div>
+    </div>
+    <div class="product-info">
+      <div class="product-brand">${p.brand}</div>
+      <div class="product-name">${name}</div>
+      <div class="product-desc">${desc}</div>
+      <div class="specs-row">${specsHtml}</div>
+      <div class="diabetes-features">
+        <h4>🩸 ${lang==='he'?'מתאים לסכרת':'Diabetes Friendly'}</h4>
+        <ul>${featHtml}</ul>
+      </div>
+      <div class="product-footer">
+        <div>
+          <div class="price">${priceLabel}</div>
+          <div class="price-sub">${lang==='he'?'כולל מע"מ':'incl. VAT'}</div>
+        </div>
+        <button class="add-btn" id="add-${p.id}" onclick="addToCart(${p.id})">${addLabel}</button>
+      </div>
+    </div>
+  </div>`;
+}
+
+function goSlide(id, idx){
+  const p = PRODUCTS.find(x=>x.id===id);
+  const mediaCount = Math.min(p.images.length, 2) + 1 + (p.images[2]?1:0);
+  const total = p.images.slice(0,2).length + 1 + (p.images[2]?1:0);
+  let newIdx = ((idx%total)+total)%total;
+  galleryIndex[id] = newIdx;
+  const wrapper = document.getElementById('imgs-'+id);
+  if(!wrapper) return;
+  const itemW = 100/total;
+  wrapper.style.transform = `translateX(${lang==='he'?'':'-'}${newIdx*itemW}%)`;
+  const gallery = document.getElementById('gallery-'+id);
+  gallery.querySelectorAll('.dot').forEach((d,i)=>{
+    d.classList.toggle('active',i===newIdx);
+  });
+}
+
+// ── CART ──────────────────────────────────────────────────────────────────────
+function addToCart(id){
+  const p = PRODUCTS.find(x=>x.id===id);
+  const existing = cart.find(x=>x.id===id);
+  if(existing) existing.qty++;
+  else cart.push({...p, qty:1});
+  updateCartCount();
+  renderCart();
+  showToast(lang==='he'?`${p.name} נוסף לסל!`:`${p.nameEn} added to cart!`);
+  const btn = document.getElementById('add-'+id);
+  if(btn){ btn.classList.add('added'); btn.textContent=lang==='he'?'✓ נוסף!':'✓ Added!'; setTimeout(()=>{btn.classList.remove('added');btn.textContent=lang==='he'?'הוסף לסל':'Add to Cart';},1500);}
+}
+
+function updateCartCount(){
+  const total = cart.reduce((s,x)=>s+x.qty,0);
+  document.getElementById('cart-count').textContent = total;
+  document.getElementById('checkout-btn').disabled = total===0;
+}
+
+function renderCart(){
+  const container = document.getElementById('cart-items-container');
+  if(cart.length===0){
+    container.innerHTML=`<div class="cart-empty"><div class="empty-icon">🛒</div><p>${lang==='he'?'הסל ריק. הוסף מוצרים מהגלריה':'Cart is empty. Add products from the gallery.'}</p></div>`;
+  }else{
+    container.innerHTML = cart.map(item=>`
+    <div class="cart-item">
+      <div class="cart-item-img"><img src="${item.images[0]}" alt="${item.name}" onerror="this.src='https://placehold.co/50x50/0a0f1a/00d2ff?text=📱'"></div>
+      <div class="cart-item-info">
+        <div class="cart-item-name">${lang==='he'?item.name:item.nameEn}</div>
+        <div class="cart-item-price">₪${(item.price*item.qty).toLocaleString()}</div>
+        <div class="qty-controls">
+          <button class="qty-btn" onclick="changeQty(${item.id},-1)">−</button>
+          <span class="qty-num">${item.qty}</span>
+          <button class="qty-btn" onclick="changeQty(${item.id},1)">+</button>
+          <button class="remove-item" onclick="removeItem(${item.id})">${lang==='he'?'הסר':'Remove'}</button>
+        </div>
+      </div>
+    </div>`).join('');
+  }
+  const total = cart.reduce((s,x)=>s+(x.price*x.qty),0);
+  document.getElementById('cart-total-price').textContent = '₪'+total.toLocaleString();
+  updateOrderSummary();
+}
+
+function changeQty(id, delta){
+  const item = cart.find(x=>x.id===id);
+  if(!item) return;
+  item.qty += delta;
+  if(item.qty<=0) removeItem(id);
+  else{ updateCartCount(); renderCart(); }
+}
+
+function removeItem(id){
+  cart = cart.filter(x=>x.id!==id);
+  updateCartCount();
+  renderCart();
+}
+
+function openCart(){
+  document.getElementById('cart-overlay').classList.add('open');
+  document.getElementById('cart-drawer').classList.add('open');
+}
+function closeCart(){
+  document.getElementById('cart-overlay').classList.remove('open');
+  document.getElementById('cart-drawer').classList.remove('open');
+}
+
+// ── CHECKOUT ──────────────────────────────────────────────────────────────────
+function openCheckout(){
+  closeCart();
+  document.getElementById('checkout-modal').classList.add('open');
+  updateOrderSummary();
+  document.getElementById('checkout-form-screen').style.display='block';
+  document.getElementById('success-screen').style.display='none';
+}
+function closeCheckout(){
+  document.getElementById('checkout-modal').classList.remove('open');
+}
+
+function selectInstall(el, n){
+  installments = n;
+  document.querySelectorAll('.install-btn').forEach(b=>b.classList.remove('active'));
+  el.classList.add('active');
+  updateOrderSummary();
+}
+
+function updateOrderSummary(){
+  const el = document.getElementById('order-summary');
+  if(!el) return;
+  const subtotal = cart.reduce((s,x)=>s+(x.price*x.qty),0);
+  const vat = Math.round(subtotal*0.17);
+  const total = subtotal + vat;
+  const perInstall = installments>1 ? Math.ceil(total/installments) : null;
+  el.innerHTML = `
+    ${cart.map(x=>`<div class="summary-line"><span>${lang==='he'?x.name:x.nameEn} ×${x.qty}</span><span>₪${(x.price*x.qty).toLocaleString()}</span></div>`).join('')}
+    <div class="summary-line"><span>${lang==='he'?'מע"מ (17%)':'VAT (17%)'}</span><span>₪${vat.toLocaleString()}</span></div>
+    <div class="summary-line total">
+      <span>${lang==='he'?'סה"כ':'Total'}</span>
+      <span>₪${total.toLocaleString()}${perInstall?` (${installments}×₪${perInstall.toLocaleString()})`:''}</span>
+    </div>`;
+}
+
+function formatCard(el){
+  let v = el.value.replace(/\D/g,'').substring(0,16);
+  el.value = v.replace(/(.{4})/g,'$1 ').trim();
+}
+function formatExp(el){
+  let v = el.value.replace(/\D/g,'');
+  if(v.length>=2) v = v.substring(0,2)+'/'+v.substring(2,4);
+  el.value = v;
+}
+
+async function processPayment(){
+  const btn = document.getElementById('pay-btn');
+  const txtEl = document.getElementById('pay-btn-text');
+  // Basic validation
+  const fields = ['f-firstname','f-lastname','f-email','f-card','f-exp','f-cvv'];
+  for(const f of fields){
+    if(!document.getElementById(f).value.trim()){
+      document.getElementById(f).style.borderColor='#ef4444';
+      document.getElementById(f).focus();
+      return;
+    }
+    document.getElementById(f).style.borderColor='';
+  }
+  btn.disabled = true;
+  txtEl.innerHTML = `<div class="loader"></div> ${lang==='he'?'מעבד תשלום...':'Processing payment...'}`;
+
+  // ── iCount API Integration ──────────────────────────────────────────────
+  // iCount API endpoint: https://api.icount.co.il
+  // In production, replace ICOUNT_API_TOKEN with your actual token from iCount dashboard.
+  // The actual charge is handled server-side; below is a simulation of the API call structure.
+  //
+  // const payload = {
+  //   cid: "YOUR_COMPANY_ID",
+  //   user: "YOUR_USERNAME",
+  //   pass: "YOUR_PASSWORD",
+  //   doc_type: "invrec",   // Invoice + Receipt combined (חשבונית מס קבלה)
+  //   client_name: document.getElementById('f-firstname').value + ' ' + document.getElementById('f-lastname').value,
+  //   client_email: document.getElementById('f-email').value,
+  //   cc_number: document.getElementById('f-card').value.replace(/\s/g,''),
+  //   cc_exp: document.getElementById('f-exp').value,
+  //   cc_cvv: document.getElementById('f-cvv').value,
+  //   payments: installments,
+  //   items: cart.map(x => ({
+  //     description: x.name,
+  //     quantity: x.qty,
+  //     unit_price: x.price,
+  //     vat: 17
+  //   }))
+  // };
+  // const response = await fetch('https://api.icount.co.il/api/create_doc.php', {
+  //   method: 'POST',
+  //   headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ICOUNT_API_TOKEN' },
+  //   body: JSON.stringify(payload)
+  // });
+  // const result = await response.json();
+  // if(result.error !== 0) throw new Error(result.message);
+
+  await new Promise(r=>setTimeout(r,2000)); // Simulate API call
+
+  document.getElementById('checkout-form-screen').style.display='none';
+  document.getElementById('success-screen').style.display='block';
+}
+
+function resetCart(){
+  cart=[];updateCartCount();renderCart();
+}
+
+// ── TOAST ──────────────────────────────────────────────────────────────────────
+function showToast(msg){
+  const t=document.getElementById('toast');
+  document.getElementById('toast-msg').textContent=msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2500);
+}
+
+// ── SCROLL REVEAL ─────────────────────────────────────────────────────────────
+const ro = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');}});
+},{threshold:.12});
+function initReveal(){document.querySelectorAll('.reveal').forEach(el=>ro.observe(el));}
+
+// ── INIT ──────────────────────────────────────────────────────────────────────
+renderProducts();
+initReveal();
+updateCartCount();
+document.querySelectorAll('.filter-chip').forEach(el=>{
+  if(el.getAttribute('data-'+lang)) el.textContent = el.getAttribute('data-'+lang);
+});
+</script>
+</body>
+</html>
