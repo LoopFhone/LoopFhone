@@ -1463,7 +1463,7 @@
           <div class="trust-grid">
             <div class="trust-card"><span>✓</span><span data-i18n="trust1">סינון חכם ובטוח</span></div>
             <div class="trust-card"><span>✓</span><span data-i18n="trust2">אחריות שנה על המכשיר והגרסה</span></div>
-            <div class="trust-card"><span>✓</span><span data-i18n="trust3">תמיכה מלאה בעברית</span></div>
+            <div class="trust-card"><span>✓</span><span data-i18n="trust3">תמיכה מקומית מחבקת</span></div>
             <div class="trust-card"><span>✓</span><span data-i18n="trust4">ליווי אישי לכל לקוח</span></div>
           </div>
         </div>
@@ -1511,7 +1511,7 @@
             <h2 class="section-title" data-i18n="productsTitle">בואו נבחר את המכשיר המושלם עבורכם</h2>
             <p class="section-text" data-i18n="productsText">כל מכשיר מגיע אליכם עם גרסה מסוננת הרמטית, התאמה אישית ראשונית, תמיכה מלאה בעברית וכמובן - אחריות לשנה על המכשיר והגרסה.</p>
           </div>
-          <div class="price-note"><span data-i18n="vatIncluded">התאמה אישית לכל לקוח</span> · <span data-i18n="delivery30">משלוחים לכל הארץ</span></div>
+          <div class="price-note"><span data-i18n="vatIncluded">התאמה אישית לכל לקוח</span> · <span data-i18n="delivery30">אפשרות לאיסוף או משלוח</span></div>
         </div>
 
         <div class="products-grid" id="productsGrid"></div>
@@ -1570,7 +1570,7 @@
         <div class="integration-card">
           <div class="icon">🚚</div>
           <h3 data-i18n="shippingTitle">משלוחים לכל הארץ</h3>
-          <p data-i18n="shippingText">אנו דואגים לארוז את המכשיר שלכם באהבה ולשלוח אותו עד אליכם בבטחה, לכל נקודה ברחבי הארץ בתוספת 30₪ בלבד.</p>
+          <p data-i18n="shippingText">אנו דואגים לארוז את המכשיר שלכם באהבה ולשלוח אותו עד אליכם בבטחה בעלות של 30₪, או שתוכלו לאסוף בעצמכם בחינם.</p>
         </div>
       </div>
     </section>
@@ -1653,7 +1653,8 @@
       lang: 'he',
       activeProductId: 'qin-k25',
       modalProductId: null,
-      cart: []
+      cart: [],
+      isDelivery: true // משתנה ברירת מחדל למשלוח (כן/לא)
     };
 
     const i18n = {
@@ -1672,18 +1673,18 @@
         heroSecondary: 'איך הסינון עובד?',
         trust1: 'סינון חכם ובטוח',
         trust2: 'אחריות שנה על המכשיר והגרסה',
-        trust3: 'תמיכה מלאה בעברית',
-        trust4: 'ליווי אישי לכל לקוח',
-        addToCart: 'רכישה',
+        trust3: 'תמיכה מקומית מחבקת',
+        trust4: 'ליווי אישי חם לכל לקוח',
+        addToCart: 'הוספה לסל 🛒',
         details: 'לכל הפרטים',
-        filterTitle: 'אז מה פתוח ומה חסום?',
+        filterTitle: 'מה פתוח ומה חסום? באהבה ובשקיפות',
         filterSubtitle: 'הפילוסופיה שלנו פשוטה: פותחים רק מה שעושה לכם טוב. הגישה נבנית סביב בריאות, מעקב והפחתת הסחות דעת.',
         openTitle: 'פתוח ובטוח לשימוש',
         blockedTitle: 'חסום כברירת מחדל',
         productsTitle: 'בואו נבחר את המכשיר המושלם עבורכם',
         productsText: 'כל מכשיר מגיע אליכם עם גרסה מסוננת הרמטית, התאמה אישית ראשונית, תמיכה מלאה בעברית וכמובן - אחריות לשנה על המכשיר והגרסה.',
         vatIncluded: 'התאמה אישית לכל לקוח',
-        delivery30: 'משלוחים לכל הארץ',
+        delivery30: 'אפשרות לאיסוף או משלוח',
         parentsTitle: 'מותאם לכל גיל — ונותן למשפחה ים של שקט',
         parentsText: 'המערכת שלנו עוטפת את המשתמשים מכל הגילאים, ומעניקה לבני המשפחה המלווים סמארטפון שמאפשר תקשורת חלקה ושימוש באפליקציות בריאות חיוניות — בלי הסחות דעת.',
         childFriendly: 'מותאם לכל גיל באהבה',
@@ -1698,17 +1699,20 @@
         invoiceTitle: 'אחריות וליווי',
         invoiceText: 'הקשר שלנו לא מסתיים ברכישה. תקבלו חשבונית מסודרת, שנת אחריות על המכשיר והגרסה, וכתובת שתמיד זמינה לעזור.',
         shippingTitle: 'משלוחים לכל הארץ',
-        shippingText: 'אנו דואגים לארוז את המכשיר שלכם באהבה ולשלוח אותו עד אליכם בבטחה, בתוספת 30₪ דמי משלוח שיחושבו בסל.',
+        shippingText: 'אנו דואגים לארוז את המכשיר שלכם באהבה ולשלוח אותו עד אליכם בבטחה, בתוספת 30₪ דמי משלוח (או איסוף בחינם).',
         faqTitle: 'שאלות שאנחנו נשאלים הרבה',
         footerCta: 'מתלבטים? אנחנו כאן כדי לעזור לכם לבחור נכון',
         medicalNotice: 'המידע באתר אינו ייעוץ רפואי. המכשירים אינם מכשיר רפואי ואינם תחליף לטיפול. שימוש באפליקציות כפוף להנחיות הרופא המטפל.',
         whatsapp: 'להתייעצות אישית בוואטסאפ',
-        cart: 'סל קניות',
-        emptyCart: 'הסל שלכם עדיין ריק :)',
+        cart: 'הסל שלי',
+        emptyCart: 'העגלה שלכם עדיין ריקה :)',
+        shippingQuestion: 'איך תרצו לקבל את המכשיר?',
+        deliveryOption: 'אשמח למשלוח עד הבית (30₪)',
+        pickupOption: 'אגיע לאסוף בעצמי (חינם)',
         subtotal: 'סכום ביניים',
         shipping: 'דמי משלוח',
         total: 'סה״כ לתשלום',
-        checkout: 'מעבר לתשלום (יש חשבונית)',
+        checkout: 'המשך לתשלום מאובטח',
         gallery: 'פרטים וגלריה',
         video: 'וידאו היכרות עם המוצר',
         videoHint: 'כאן ניתן להטמיע סרטון הדגמה לכל מכשיר.',
@@ -1740,7 +1744,7 @@
           ['מה קורה אם הצרכים משתנים ונרצה לפתוח עוד משהו?', 'אין שום בעיה. אנחנו זמינים עבורכם. מגישים בקשה מסודרת ואנחנו מעדכנים את הגדרות הסינון מרחוק או באישורים פנימיים.'],
           ['מה האחריות שלכם כוללת?', 'אנחנו מעניקים שנה של אחריות כפולה: גם על תקינות המכשיר הפיזי וגם על יציבות מערכת הסינון שלנו.']
         ],
-        included: ['גרסה מסוננת, יציבה ובטוחה', 'ליווי אישי בהתאמת האפליקציות', 'אחריות שנה מלאה על המכשיר והגרסה', 'זמינות ותמיכה מלאה בשפה העברית']
+        included: ['גרסה מסוננת, יציבה ובטוחה', 'ליווי אישי בהתאמת האפליקציות', 'אחריות שנה מלאה על המכשיר והגרסה', 'זמינות ותמיכה מקומית מחבקת']
       },
       en: {
         dir: 'ltr',
@@ -1759,7 +1763,7 @@
         trust2: '1-year warranty on device & version',
         trust3: 'Full Hebrew & English support',
         trust4: 'Personal guidance for every customer',
-        addToCart: 'Purchase',
+        addToCart: 'Add to Cart 🛒',
         details: 'Full details',
         filterTitle: 'What is open and what is blocked?',
         filterSubtitle: 'Our philosophy is simple: we only open what does you good. The experience is designed around health, tracking, and reducing distractions.',
@@ -1768,7 +1772,7 @@
         productsTitle: 'Let\'s find the perfect device for you',
         productsText: 'Every device comes with a tightly filtered version, initial personal setup, and a full 1-year warranty on the device and version.',
         vatIncluded: 'Personalized for you',
-        delivery30: 'Nationwide delivery',
+        delivery30: 'Pickup or Delivery options',
         parentsTitle: 'Adapted for all ages — bringing families peace of mind',
         parentsText: 'Our system embraces users of all ages, giving parents and accompanying family members a smartphone that enables smooth communication and essential health apps — without distractions.',
         childFriendly: 'Lovingly adapted for kids',
@@ -1783,17 +1787,20 @@
         invoiceTitle: 'Warranty & Support',
         invoiceText: 'Our relationship doesn\'t end at checkout. You get a receipt, a 1-year warranty, and an address that is always available to help.',
         shippingTitle: 'Nationwide Delivery',
-        shippingText: 'We pack your device with love and ship it safely to your door, anywhere in the country for ₪30.',
+        shippingText: 'We pack your device with love and ship it safely to your door anywhere in the country for ₪30 (or free pickup).',
         faqTitle: 'Frequently Asked Questions',
         footerCta: 'Not sure? We are here to help you choose right',
         medicalNotice: 'The info on this site is not medical advice. The devices do not replace medical treatment. App usage is subject to medical guidance.',
         whatsapp: 'Consult with us on WhatsApp',
-        cart: 'Shopping Cart',
+        cart: 'My Cart',
         emptyCart: 'Your cart is still empty :)',
+        shippingQuestion: 'How would you like to receive it?',
+        deliveryOption: 'Home Delivery (₪30)',
+        pickupOption: 'Self Pickup (Free)',
         subtotal: 'Subtotal',
         shipping: 'Delivery',
         total: 'Total to pay',
-        checkout: 'Proceed to Payment',
+        checkout: 'Proceed to Secure Payment',
         gallery: 'Details & Gallery',
         video: 'Product Intro Video',
         videoHint: 'You can embed a demonstration video for each device here.',
@@ -2017,22 +2024,21 @@
 
     function calculateTotals() {
       const subtotal = state.cart.reduce((sum, item) => sum + item.price * item.qty, 0);
-      const shipping = state.cart.length ? SHIPPING : 0;
+      const shipping = (state.cart.length > 0 && state.isDelivery) ? SHIPPING : 0;
       const total = subtotal + shipping;
       return { subtotal, shipping, total };
     }
 
-    // פונקציית התשלום שמתממשקת עם ה-API (יש חשבונית)
+    // פונקציית התשלום שמתממשקת עם ה-API
     async function processCheckout() {
       const btn = $('#checkoutBtn');
       const originalText = btn.innerHTML;
-      btn.innerHTML = 'מכין נתונים למעבר תשלום... ⏳';
+      btn.innerHTML = state.lang === 'he' ? 'מכינים את ההזמנה שלך באהבה... ⏳' : 'Preparing your order... ⏳';
       btn.style.opacity = '0.7';
       btn.disabled = true;
 
       const totals = calculateTotals();
       
-      // אובייקט הנתונים שיישלח ב-API ליש חשבונית (או למערכת הסליקה שלך)
       const payload = {
         amount: totals.total,
         description: "הזמנה מ-LoopFhone",
@@ -2041,14 +2047,14 @@
           quantity: item.qty,
           price: item.price
         })),
-        shipping_fee: totals.shipping
+        shipping_fee: totals.shipping,
+        delivery_requested: state.isDelivery
       };
 
-      console.log("🚀 Payload ready for Yesh Heshbonit API:", payload);
+      console.log("🚀 Payload ready for API:", payload);
 
-      // השהייה וירטואלית להדמיית קריאת שרת
       setTimeout(() => {
-        alert("כאן הקוד מתממשק עם ה-API של חברת 'יש חשבונית'.\n(ניתן להעביר את הלקוח לדף התשלום המאובטח שלהם או להחזיר חלון iframe).\n\nהנתונים שמחכים לשליחה נמצאים בקונסול.");
+        alert("כאן הקוד מתממשק עם ה-API של חברת הסליקה.\n(ניתן להעביר את הלקוח לדף התשלום המאובטח או להחזיר חלון iframe).\n\nהנתונים שמחכים לשליחה נמצאים בקונסול.");
         btn.innerHTML = originalText;
         btn.style.opacity = '1';
         btn.disabled = false;
@@ -2066,9 +2072,10 @@
       }
 
       const totals = calculateTotals();
+      const shippingText = totals.shipping > 0 ? formatILS(totals.shipping) : (state.lang === 'he' ? 'חינם' : 'Free');
       
       content.innerHTML = `
-        <div class="cart-items" style="margin-bottom: 24px;">
+        <div class="cart-items" style="margin-bottom: 20px;">
           ${state.cart.map(item => `
             <div class="cart-item">
               <div class="cart-thumb">${productImage(item)}</div>
@@ -2084,18 +2091,40 @@
             </div>
           `).join('')}
         </div>
+        
+        <div class="shipping-toggle" style="margin-bottom: 20px; background: #f1f5f9; padding: 18px; border-radius: 22px;">
+          <h4 style="margin-bottom: 12px; font-size: 16px; color: var(--dark);">${lang.shippingQuestion}</h4>
+          <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; font-weight: 700; margin-bottom: 12px; font-size: 15px; color: #334155;">
+            <input type="radio" name="shipping" value="delivery" ${state.isDelivery ? 'checked' : ''} style="width: 20px; height: 20px; accent-color: var(--emerald);">
+            ${lang.deliveryOption}
+          </label>
+          <label style="display: flex; align-items: center; gap: 10px; cursor: pointer; font-weight: 700; font-size: 15px; color: #334155;">
+            <input type="radio" name="shipping" value="pickup" ${!state.isDelivery ? 'checked' : ''} style="width: 20px; height: 20px; accent-color: var(--emerald);">
+            ${lang.pickupOption}
+          </label>
+        </div>
+
         <div class="totals" style="margin-bottom: 24px;">
           <div class="total-row"><span>${lang.subtotal}</span><span>${formatILS(totals.subtotal)}</span></div>
-          <div class="total-row"><span>${lang.shipping}</span><span>${formatILS(totals.shipping)}</span></div>
+          <div class="total-row"><span>${lang.shipping}</span><span>${shippingText}</span></div>
           <div class="total-row grand"><span>${lang.total}</span><span>${formatILS(totals.total)}</span></div>
         </div>
-        <button class="green-btn checkout-btn" type="button" id="checkoutBtn" style="width: 100%; border: none;">💳 ${lang.checkout}</button>
+        
+        <button class="green-btn checkout-btn" type="button" id="checkoutBtn" style="width: 100%; border: none; font-size: 18px;">💳 ${lang.checkout}</button>
       `;
 
       $$('[data-dec-id]').forEach(button => button.addEventListener('click', () => updateQty(button.dataset.decId, -1)));
       $$('[data-inc-id]').forEach(button => button.addEventListener('click', () => updateQty(button.dataset.incId, 1)));
       
-      // חיבור כפתור הרכישה לפונקציית התשלום
+      // האזנה לשינוי סוג המשלוח
+      $$('input[name="shipping"]').forEach(radio => {
+        radio.addEventListener('change', (e) => {
+          state.isDelivery = e.target.value === 'delivery';
+          renderCart(); 
+        });
+      });
+      
+      // חיבור כפתור הרכישה
       $('#checkoutBtn').addEventListener('click', processCheckout);
       
       renderCartCount();
