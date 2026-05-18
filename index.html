@@ -543,6 +543,44 @@
     html[dir="rtl"] .footer-buttons { align-items: flex-end; }
     html[dir="ltr"] .footer-buttons { align-items: flex-start; }
 
+    .btn-email {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      border-radius: 999px; padding: 13px 26px;
+      min-height: 50px; font-size: 15px; font-weight: 800;
+      transition: all 0.22s; cursor: pointer;
+      background: #1a73e8; color: #ffffff;
+      box-shadow: 0 12px 28px rgba(26,115,232,0.26);
+      text-decoration: none; white-space: nowrap;
+    }
+    .btn-email:hover { background: #1557b0; transform: translateY(-2px); }
+
+    /* ─── SITE FOOTER ────────────────────── */
+    .site-footer {
+      background: var(--navy); color: rgba(255,255,255,0.55);
+      padding: 36px 0;
+      border-top: 1px solid rgba(201,168,76,0.12);
+    }
+
+    .site-footer-inner {
+      display: flex; flex-direction: column; align-items: center;
+      gap: 10px; text-align: center;
+    }
+
+    .site-footer .footer-logo {
+      font-family: 'Frank Ruhl Libre', serif;
+      font-size: 20px; font-weight: 700; color: var(--gold);
+      letter-spacing: -0.01em; margin-bottom: 4px;
+    }
+
+    .site-footer p { font-size: 13px; font-weight: 500; line-height: 1.7; }
+
+    .site-footer a { color: rgba(255,255,255,0.75); text-decoration: underline; }
+    .site-footer a:hover { color: var(--gold); }
+
+    .footer-divider {
+      width: 40px; height: 1px; background: rgba(201,168,76,0.3); margin: 6px auto;
+    }
+
     /* ─── WHATSAPP FLOAT ─────────────────── */
     .wa-float {
       position: fixed; right: 22px; bottom: 22px; z-index: 70;
@@ -1064,7 +1102,7 @@
             </div>
             <div class="footer-buttons">
               <a href="https://wa.me/972556789344" class="btn-green" rel="noopener noreferrer" target="_blank">💬 <span data-i18n="whatsapp">ייעוץ אישי בוואטסאפ</span></a>
-              <button class="btn-white" id="footerCartBtn" type="button">🛒 <span data-i18n="cart">מעבר לסל הקניות</span></button>
+              <a href="mailto:n0556789344@gmail.com" class="btn-email">✉ n0556789344@gmail.com</a>
             </div>
           </div>
         </div>
@@ -1072,6 +1110,27 @@
     </section>
 
   </main>
+
+  <!-- SITE FOOTER -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container site-footer-inner">
+      <div class="footer-logo">LoopFhone ✦</div>
+      <div class="footer-divider"></div>
+      <p>מכשירים מסוננים בהתאמה אישית קפדנית — בהנחיית גדולי ישראל</p>
+      <p>
+        לפרטים ויצירת קשר:
+        <a href="mailto:n0556789344@gmail.com">n0556789344@gmail.com</a>
+        &nbsp;|&nbsp;
+        <a href="https://wa.me/972556789344" rel="noopener noreferrer" target="_blank">055-678-9344</a>
+      </p>
+      <div class="footer-divider"></div>
+      <p>האתר מנוהל ובבעלות <strong style="color:rgba(255,255,255,0.80)">דוד חזן</strong> &mdash; LoopFhone</p>
+      <p style="font-size:12px;margin-top:2px;">
+        &copy; <span id="footerYear"></span> LoopFhone — דוד חזן. כל הזכויות שמורות.
+        אין לשכפל, להפיץ או לעשות כל שימוש בתכני האתר ללא אישור מפורש בכתב.
+      </p>
+    </div>
+  </footer>
 
   <a href="https://wa.me/972556789344" class="wa-float" aria-label="פתיחת שיחת וואטסאפ" rel="noopener noreferrer" target="_blank">💬</a>
 
@@ -1168,7 +1227,10 @@
         price: 849,
         specs: ['3.5″', '4GB RAM', '128GB', 'Android 14', '4G VoLTE'],
         mock: 'light',
-        images: []
+        images: [
+          'https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcQkKHs6vS1UnY9pqIop8Ttg84QhL9jGeURfbJ5oqoSm9zr0DsWqeo3qecJaoqgVJW8Os4x85GJ88YO4sMga9hW47k0b1mYrt0Yd_3v8khe_bcwPHOItfGEk4Q&usqp=CAc',
+          'https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcSLAnEkO__TET4UhC6bptjqzqPwzBeIOwyNMi4s6ZSygctwimBBFrSDbz9NlPinbMSBWTU0Qo3CirwWh60bRAufrv0NbiMDSuyIp8qK4wQAhtwynNzQ6ZAELO01f9AVr5IlTxPvensrnA&usqp=CAc'
+        ]
       },
       {
         id: 'qin-f25',
@@ -1176,7 +1238,10 @@
         price: 899,
         specs: ['3.54″', '6GB RAM', '128GB', 'Android 14', 'Dual SIM'],
         mock: 'keys',
-        images: []
+        images: [
+          'https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRV6as_ouz1Wf8ddz0kr8_wYDpKxuxXi1NEU6mcMyslf1XTO4A4rZH2COnzu71Xt8rBaMEbzyVM4YGh3R783xn3wlL7js1O2gPNcKn9RJr5CIXsO5iDptxK_m4Yd78iPMaIuc17NTQ&usqp=CAc',
+          'https://github.com/LoopFhone/LoopFhone/blob/main/icon/f25.jpg?raw=true'
+        ]
       },
       {
         id: 'jelly-star',
@@ -1724,7 +1789,6 @@
     });
 
     $('#openCartBtn').addEventListener('click', openCart);
-    $('#footerCartBtn').addEventListener('click', openCart);
     $('#closeCartBtn').addEventListener('click', closeCart);
 
     $('#cartOverlay').addEventListener('click', e => {
@@ -1772,6 +1836,7 @@
     })();
 
     // ─── INIT ─────────────────────────────
+    document.getElementById('footerYear').textContent = new Date().getFullYear();
     renderAll();
     renderCart();
   </script>
